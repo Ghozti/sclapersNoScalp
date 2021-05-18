@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.util.LinkedList;
+
 public class Screen implements com.badlogic.gdx.Screen {
 
     //screen
@@ -18,7 +20,8 @@ public class Screen implements com.badlogic.gdx.Screen {
     final float WORLD_HEIGHT = 1080;
     final float WORLD_WIDTH = 1920;
     //objects
-
+    Player player;
+    LinkedList<GraphicsCard> graphicsCards;
 
     public Screen(){
 
