@@ -1,8 +1,13 @@
 package ghozti.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import java.util.LinkedList;
 
@@ -23,9 +28,16 @@ public class Screen implements com.badlogic.gdx.Screen {
     LinkedList<GraphicsCard> graphicsCards;
 
     public Screen(){
+        //sets camera, viewport
+        camera = new OrthographicCamera();
+        viewport = new StretchViewport(WORLD_WIDTH,WORLD_HEIGHT,camera);
 
+        //sets texture atlas and batch
+        atlas = new TextureAtlas("unnamed.atlas");
+        batch = new SpriteBatch();
+
+        player = new Player(atlas.findRegion("amogus"),550,50,50,1000,1000);
     }
-
 
     @Override
     public void show() {
@@ -34,12 +46,18 @@ public class Screen implements com.badlogic.gdx.Screen {
 
     @Override
     public void render(float delta) {
-
+        Gdx.gl.glClearColor(.128f,.128f,.128f,.1f);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        player.move(delta);
+        batch.begin();
+        player.draw(batch);
+        batch.end();
     }
 
     @Override
     public void resize(int width, int height) {
-
+        viewport.update(width,height,true);//tells the viewport to update accordingly
+        batch.setProjectionMatrix(camera.combined);
     }
 
     @Override
@@ -59,6 +77,5 @@ public class Screen implements com.badlogic.gdx.Screen {
 
     @Override
     public void dispose() {
-
     }
 }

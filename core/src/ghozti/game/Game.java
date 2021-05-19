@@ -2,11 +2,9 @@ package ghozti.game;
 
 public class Game extends com.badlogic.gdx.Game {
 
-	Screen screen = new Screen();
-
 	@Override
 	public void create() {
-		setScreen(screen);
+		setScreen(new Screen());
 	}
 
 	@Override
