@@ -29,27 +29,50 @@ public class Player {
     public float getX() {return boundingRect.x;}
     public float getY(){return boundingRect.y;}
 
+    //TODO imprive the collision detection
+
+    private void verifyPos(float x,float y){
+        if (x > 1878 || x < -3){
+            boundingRect.setPosition(1045,boundingRect.y);
+            System.out.println('*');
+        }
+        if(y > 1041 || y < 4){
+            boundingRect.setPosition(boundingRect.x,10);
+        }
+    }
+
     public void move(float delta) {
+        float xchange,ychange;
 
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            //boundingRect.x += speed * delta;
-            boundingRect.setPosition(boundingRect.x+speed * delta,boundingRect.y);
+            xchange = boundingRect.x+speed * delta;
+            ychange = boundingRect.y;
+            boundingRect.setPosition(xchange,ychange);
+            verifyPos(xchange,ychange);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-            //boundingRect.x -= speed * delta;
-            boundingRect.setPosition(boundingRect.x-speed * delta,boundingRect.y);
+            xchange = boundingRect.x-speed * delta;
+            ychange = boundingRect.y;
+            boundingRect.setPosition(xchange,ychange);
+            verifyPos(xchange,ychange);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-            //boundingRect.y += speed * delta;
-            boundingRect.setPosition(boundingRect.x,boundingRect.y+speed * delta);
+            ychange = boundingRect.y+speed * delta;
+            xchange = boundingRect.x;
+            verifyPos(xchange,ychange);
+            boundingRect.setPosition(xchange,ychange);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-            //boundingRect.y -= speed * delta;
-            boundingRect.setPosition(boundingRect.x,boundingRect.y-speed * delta);
+            ychange = boundingRect.y-speed * delta;
+            xchange = boundingRect.x;
+            boundingRect.setPosition(xchange,ychange);
+            verifyPos(xchange,ychange);
         }
     }
 
     public void draw(Batch batch){
         batch.draw(playerTexture,boundingRect.x,boundingRect.y,boundingRect.width,boundingRect.height);
+        //System.out.println("x" + "[" + boundingRect.x + "]");
+        //System.out.println("y" + "[" + boundingRect.y + "]");
     }
 }
