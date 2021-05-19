@@ -31,17 +31,21 @@ public class Player {
 
     public void move(float delta) {
 
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            boundingRect.x += speed * delta;
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+            //boundingRect.x += speed * delta;
+            boundingRect.setPosition(boundingRect.x+speed * delta,boundingRect.y);
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            boundingRect.x -= speed * delta;
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+            //boundingRect.x -= speed * delta;
+            boundingRect.setPosition(boundingRect.x-speed * delta,boundingRect.y);
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            boundingRect.y += speed * delta;
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+            //boundingRect.y += speed * delta;
+            boundingRect.setPosition(boundingRect.x,boundingRect.y+speed * delta);
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            boundingRect.y -= speed * delta;
+        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+            //boundingRect.y -= speed * delta;
+            boundingRect.setPosition(boundingRect.x,boundingRect.y-speed * delta);
         }
     }
 

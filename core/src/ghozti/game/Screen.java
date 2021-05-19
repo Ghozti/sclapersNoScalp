@@ -36,7 +36,7 @@ public class Screen implements com.badlogic.gdx.Screen {
         atlas = new TextureAtlas("unnamed.atlas");
         batch = new SpriteBatch();
 
-        player = new Player(atlas.findRegion("amogus"),550,50,50,1000,1000);
+        player = new Player(atlas.findRegion("amogus"),275,50,50,1000,1000);
     }
 
     @Override
