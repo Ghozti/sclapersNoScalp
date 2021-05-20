@@ -1,4 +1,4 @@
-package ghozti.game.entities;
+package ghozti.game.entities.graphicsCard;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;

@@ -1,4 +1,4 @@
-package ghozti.game.entities;
+package ghozti.game.entities.player;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;

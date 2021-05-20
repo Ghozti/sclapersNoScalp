@@ -1,4 +1,4 @@
-package ghozti.game.entities;
+package ghozti.game.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
@@ -8,8 +8,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import ghozti.game.entities.GraphicsCard;
-import ghozti.game.entities.Player;
+import ghozti.game.entities.graphicsCard.GraphicsCard;
+import ghozti.game.entities.player.Player;
 
 import java.util.LinkedList;
 
