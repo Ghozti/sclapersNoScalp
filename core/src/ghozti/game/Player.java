@@ -29,9 +29,12 @@ public class Player {
     public float getX() {return boundingRect.x;}
     public float getY(){return boundingRect.y;}
 
-    //TODO imprive the collision detection
-
     private void verifyPos(float x,float y){
+        /*
+        * will check the current x and y position.
+        * based on the position it will check if the player's x and y is at a certain point if it is then the player will be moved to the opposite "border" coordinate making an effect like in
+        * pacman where the player seems to move from one side of the map to the other.
+         */
         if (x > 1878 || x < -3){//for x
             if(x > 1878) boundingRect.setPosition(-3,boundingRect.y);
             else if(x < -3) boundingRect.setPosition(1878,boundingRect.y);
