@@ -32,12 +32,13 @@ public class Player {
     //TODO imprive the collision detection
 
     private void verifyPos(float x,float y){
-        if (x > 1878 || x < -3){
-            boundingRect.setPosition(1045,boundingRect.y);
-            System.out.println('*');
+        if (x > 1878 || x < -3){//for x
+            if(x > 1878) boundingRect.setPosition(-3,boundingRect.y);
+            else if(x < -3) boundingRect.setPosition(1878,boundingRect.y);
         }
-        if(y > 1041 || y < 4){
-            boundingRect.setPosition(boundingRect.x,10);
+        if(y > 1041 || y < 4){//for y
+            if(y > 1041) boundingRect.setPosition(boundingRect.x,4);
+            if(y < 4) boundingRect.setPosition(boundingRect.x,1041);
         }
     }
 
@@ -59,8 +60,8 @@ public class Player {
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             ychange = boundingRect.y+speed * delta;
             xchange = boundingRect.x;
-            verifyPos(xchange,ychange);
             boundingRect.setPosition(xchange,ychange);
+            verifyPos(xchange,ychange);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
             ychange = boundingRect.y-speed * delta;
