@@ -19,6 +19,11 @@ public class GraphicsCard {
         boundingRect = new Rectangle(x,y,width,height);
     }
 
+    public float getHeight(){return boundingRect.height;}
+    public float getWidth() {return boundingRect.width;}
+    public float getX() {return boundingRect.x;}
+    public float getY(){return boundingRect.y;}
+
     public void draw(Batch batch){
         batch.draw(textureRegion,boundingRect.x,boundingRect.y,boundingRect.width,boundingRect.height);
         boundingRect.setPosition(boundingRect.x, boundingRect.y);

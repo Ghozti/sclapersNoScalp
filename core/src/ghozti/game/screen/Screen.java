@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import ghozti.game.entities.graphicsCard.GraphicsCard;
+import ghozti.game.entities.npc.Scalper;
 import ghozti.game.entities.player.Player;
 
 import java.util.LinkedList;
@@ -32,6 +33,7 @@ public class Screen implements com.badlogic.gdx.Screen {
     //objects
     Player player;
     GraphicsCard card;
+    Scalper scalper;
     LinkedList<GraphicsCard> graphicsCards;
 
     public Screen(){
@@ -45,7 +47,8 @@ public class Screen implements com.badlogic.gdx.Screen {
 
         //initializes the game objects
         card = new GraphicsCard(atlas.findRegion("3070"),500,500,100,50);
-        player = new Player(atlas.findRegion("amogus"),275,50,100,1000,1000);
+        player = new Player(atlas.findRegion("amogus"),275,100,50,1000,1000);
+        scalper = new Scalper(atlas.findRegion("amogus"),50,100,50,1000,1000);
     }
 
     @Override
@@ -61,6 +64,8 @@ public class Screen implements com.badlogic.gdx.Screen {
         batch.begin();
         card.draw(batch);
         player.draw(batch,delta);
+        scalper.move(delta,card);
+        scalper.draw(batch);
 
         batch.end();
     }

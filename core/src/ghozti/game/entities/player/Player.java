@@ -16,7 +16,7 @@ public class Player {
     com.badlogic.gdx.math.Rectangle boundingRect;
 
     //constructor
-    public Player(TextureRegion playerTexture,float speed, float height, float width, float x, float y){
+    public Player(TextureRegion playerTexture,float speed, float width, float height, float x, float y){
         this.playerTexture = playerTexture;
         this.speed = speed;
         boundingRect = new Rectangle(x,y,width,height);
