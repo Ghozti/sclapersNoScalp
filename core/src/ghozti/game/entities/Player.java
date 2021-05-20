@@ -1,4 +1,4 @@
-package ghozti.game;
+package ghozti.game.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -45,7 +45,7 @@ public class Player {
         }
     }
 
-    public void move(float delta) {
+    private void move(float delta) {
         float xchange,ychange;
 
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
@@ -74,7 +74,8 @@ public class Player {
         }
     }
 
-    public void draw(Batch batch){
+    public void draw(Batch batch, float delta){
+        move(delta);
         batch.draw(playerTexture,boundingRect.x,boundingRect.y,boundingRect.width,boundingRect.height);
         //System.out.println("x" + "[" + boundingRect.x + "]");
         //System.out.println("y" + "[" + boundingRect.y + "]");
