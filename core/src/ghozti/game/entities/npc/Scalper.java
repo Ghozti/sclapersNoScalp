@@ -37,43 +37,19 @@ public class Scalper {
         if(card != null){
             if(card.getX() > getX()){
                 boundingRect.setPosition(getX()+speed*delta, getY());
-
-                if(determiner == 15){
-                    currentTexture = atlas.findRegion("rightwalk1");
-                }else if(determiner == 30){
-                    currentTexture = atlas.findRegion("rightwalk2");
-                }
             }else if(card.getX() < getX()){
                 boundingRect.setPosition(getX()-speed*delta, getY());
-
-                if(determiner == 15){
-                    currentTexture = atlas.findRegion("leftwalk1");
-                }else if(determiner == 30){
-                    currentTexture = atlas.findRegion("leftwalk2");
-                }
             }
 
             if(card.getY() > getY()){
                 boundingRect.setPosition(getX(),getY()+speed*delta);
-
-                if(determiner == 15){
-                    currentTexture = atlas.findRegion("frontwalk1");
-                }else if(determiner == 30){
-                    currentTexture = atlas.findRegion("frontwalk2");
-                }
             }else if(card.getY() < getY()){
                 boundingRect.setPosition(getX(),getY()-speed*delta);
-
-                if(determiner == 15){
-                    currentTexture = atlas.findRegion("forwardwalk1");
-                }else if(determiner == 30){
-                    currentTexture = atlas.findRegion("forwardwalk2");
-                }
             }
 
-            determiner++;
+            determiner+=0.5;
 
-            if(determiner > 30){
+            if(determiner > 60){
                 determiner = 0;
             }
         }
