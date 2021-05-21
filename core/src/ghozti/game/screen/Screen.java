@@ -55,7 +55,7 @@ public class Screen implements com.badlogic.gdx.Screen {
         //initializes the game objects
         //card = new GraphicsCard(atlas.findRegion("3070"),100,50,WORLD_WIDTH,WORLD_HEIGHT);
         for (int i = 0; i < 3; i++) {
-            graphicsCards.add(new GraphicsCard(atlas.findRegion("3070"),100,50,WORLD_WIDTH,WORLD_HEIGHT));
+            graphicsCards.add(new GraphicsCard(atlas,100,50,WORLD_WIDTH,WORLD_HEIGHT));
         }
 
         player = new Player(atlas.findRegion("amogus"),275,100,100,1000,1000);
@@ -72,13 +72,13 @@ public class Screen implements com.badlogic.gdx.Screen {
         detectCollision();
 
         if(graphicsCards.get(0) == null){
-            graphicsCards.set(0, new GraphicsCard(atlas.findRegion("3070"),100,50,WORLD_WIDTH,WORLD_HEIGHT));
+            graphicsCards.set(0, new GraphicsCard(atlas,100,50,WORLD_WIDTH,WORLD_HEIGHT));
         }
         if(graphicsCards.get(1) == null){
-            graphicsCards.set(1, new GraphicsCard(atlas.findRegion("3070"),100,50,WORLD_WIDTH,WORLD_HEIGHT));
+            graphicsCards.set(1, new GraphicsCard(atlas,100,50,WORLD_WIDTH,WORLD_HEIGHT));
         }
         if(graphicsCards.get(2) == null){
-            graphicsCards.set(2, new GraphicsCard(atlas.findRegion("3070"),100,50,WORLD_WIDTH,WORLD_HEIGHT));
+            graphicsCards.set(2, new GraphicsCard(atlas,100,50,WORLD_WIDTH,WORLD_HEIGHT));
         }
     }
 
