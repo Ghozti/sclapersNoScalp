@@ -23,6 +23,7 @@ public class Player {
     }
 
     //getters
+    public Rectangle getBoundingRect(){return boundingRect;}
     public float getSpeed(){return speed;}
     public float getHeight(){return boundingRect.height;}
     public float getWidth() {return boundingRect.width;}

@@ -48,7 +48,7 @@ public class Screen implements com.badlogic.gdx.Screen {
         batch = new SpriteBatch();
 
         //initializes the game objects
-        card = new GraphicsCard(atlas.findRegion("3070"),1050,500,100,50);
+        card = new GraphicsCard(atlas.findRegion("3070"),150,100,WORLD_WIDTH,WORLD_HEIGHT);
         player = new Player(atlas.findRegion("amogus"),275,100,100,1000,1000);
         scalper = new Scalper(270,100,100,10,10);
     }
