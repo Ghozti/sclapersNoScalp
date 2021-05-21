@@ -3,6 +3,7 @@ package ghozti.game.entities.graphicsCard;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import ghozti.game.entities.npc.Scalper;
 import ghozti.game.entities.player.Player;
 
 public class GraphicsCard {
@@ -26,8 +27,8 @@ public class GraphicsCard {
     public float getX() {return boundingRect.x;}
     public float getY(){return boundingRect.y;}
 
-    public boolean collides(Player player){
-        return player.getBoundingRect().overlaps(boundingRect);
+    public boolean collides(Player player, Scalper scalper){
+        return player.getBoundingRect().overlaps(boundingRect) || scalper.getBoundingRect().overlaps(boundingRect);
     }
 
     public float[] setPosition(float worldWidth,float worldHeight){
@@ -38,8 +39,5 @@ public class GraphicsCard {
 
     public void draw(Batch batch){
         batch.draw(textureRegion,boundingRect.x,boundingRect.y,boundingRect.width,boundingRect.height);
-        boundingRect.setPosition(boundingRect.x, boundingRect.y);
-        //System.out.println("x" + "[" + boundingRect.x + "]");
-        //System.out.println("y" + "[" + boundingRect.y + "]");
     }
 }

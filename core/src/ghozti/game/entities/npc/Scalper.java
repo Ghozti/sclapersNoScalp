@@ -25,6 +25,7 @@ public class Scalper {
         boundingRect = new Rectangle(x,y,width,height);
     }
 
+    public Rectangle getBoundingRect(){return boundingRect;}
     public float getSpeed(){return speed;}
     public float getHeight(){return boundingRect.height;}
     public float getWidth() {return boundingRect.width;}
