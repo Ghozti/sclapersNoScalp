@@ -32,8 +32,8 @@ public class GraphicsCard {
     }
 
     public float[] setPosition(float worldWidth,float worldHeight){
-        float x = (float) ((Math.random() * (worldWidth - 10)) + 10);
-        float y = (float) ((Math.random() * (worldHeight - 10)) + 10);
+        float x = (float) ((Math.random() * ((worldWidth - 60) - 60)) + 60);
+        float y = (float) ((Math.random() * ((worldHeight - 60) - 60)) + 60);
         return new float[]{x,y};
     }
 

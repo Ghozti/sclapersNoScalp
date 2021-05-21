@@ -63,9 +63,9 @@ public class Screen implements com.badlogic.gdx.Screen {
     }
 
     public void renderCards(Batch batch){
-        graphicsCards.get(0).draw(batch);
-        graphicsCards.get(1).draw(batch);
-        graphicsCards.get(2).draw(batch);
+        if(graphicsCards.get(0) != null) graphicsCards.get(0).draw(batch);
+        if(graphicsCards.get(1) != null) graphicsCards.get(1).draw(batch);
+        if(graphicsCards.get(2) != null) graphicsCards.get(2).draw(batch);
     }
 
     public void createCards(){
@@ -83,14 +83,9 @@ public class Screen implements com.badlogic.gdx.Screen {
     }
 
     public void detectCollision(){
-        ListIterator<GraphicsCard> iterator = graphicsCards.listIterator();
-        while (iterator.hasNext()){
-            GraphicsCard card = iterator.next();
-            if (card.collides(player,scalper)) {
-                System.out.println("***");
-                iterator.remove();
-            }
-        }
+        if(graphicsCards.get(0).collides(player,scalper)) graphicsCards.set(0,null);
+        if(graphicsCards.get(1).collides(player,scalper)) graphicsCards.set(1,null);
+        if(graphicsCards.get(2).collides(player,scalper)) graphicsCards.set(2,null);
     }
 
     @Override
@@ -104,7 +99,6 @@ public class Screen implements com.badlogic.gdx.Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         createCards();
 
-        detectCollision();
         batch.begin();
         batch.draw(background,0,0,WORLD_WIDTH,WORLD_HEIGHT);
 
