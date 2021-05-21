@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -23,6 +24,7 @@ public class Screen implements com.badlogic.gdx.Screen {
     //textures
     TextureAtlas atlas;
     SpriteBatch batch;
+    Texture background = new Texture("22.jpg");
 
     //timing
 
@@ -46,9 +48,9 @@ public class Screen implements com.badlogic.gdx.Screen {
         batch = new SpriteBatch();
 
         //initializes the game objects
-        card = new GraphicsCard(atlas.findRegion("3070"),500,500,100,50);
-        player = new Player(atlas.findRegion("amogus"),275,100,50,1000,1000);
-        scalper = new Scalper(atlas.findRegion("amogus"),50,100,50,1000,1000);
+        card = new GraphicsCard(atlas.findRegion("3070"),1000,20,100,50);
+        player = new Player(atlas.findRegion("amogus"),275,100,100,1000,1000);
+        scalper = new Scalper(atlas.findRegion("amogus"),200,100,100,10,10);
     }
 
     @Override
@@ -62,10 +64,11 @@ public class Screen implements com.badlogic.gdx.Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
+        batch.draw(background,0,0,WORLD_WIDTH,WORLD_HEIGHT);
+
         card.draw(batch);
         player.draw(batch,delta);
-        scalper.move(delta,card);
-        scalper.draw(batch);
+        scalper.draw(batch,delta,card);
 
         batch.end();
     }
