@@ -12,7 +12,6 @@ public class Scalper {
 
     //speed
     float speed;
-    float determiner = 15;
     //texture
     TextureAtlas atlas = new TextureAtlas("scalper");
     TextureRegion[] textures;
@@ -20,7 +19,7 @@ public class Scalper {
     //boundingRect
     com.badlogic.gdx.math.Rectangle boundingRect;
 
-    public Scalper(TextureRegion region,float speed,float width, float height,float x, float y){
+    public Scalper(float speed,float width, float height,float x, float y){
         this.speed = speed;
         currentTexture = atlas.findRegion("neutral");
         boundingRect = new Rectangle(x,y,width,height);
@@ -35,22 +34,16 @@ public class Scalper {
     public void move(float delta, GraphicsCard card){
 
         if(card != null){
-            if(card.getX() > getX()){
+            if(card.getX() > getX()+55){//<-- this number is used as a "stabilizer" which basically allows the scalper to move smoothly without "jumping" when moving
                 boundingRect.setPosition(getX()+speed*delta, getY());
-            }else if(card.getX() < getX()){
+            }else if(card.getX() < getX()-55){
                 boundingRect.setPosition(getX()-speed*delta, getY());
             }
 
-            if(card.getY() > getY()){
+            if(card.getY() > getY()+55){
                 boundingRect.setPosition(getX(),getY()+speed*delta);
-            }else if(card.getY() < getY()){
+            }else if(card.getY() < getY()-55){
                 boundingRect.setPosition(getX(),getY()-speed*delta);
-            }
-
-            determiner+=0.5;
-
-            if(determiner > 60){
-                determiner = 0;
             }
         }
         //TODO make this move the scalper to the nearest/last rendered card
