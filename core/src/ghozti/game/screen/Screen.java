@@ -67,17 +67,22 @@ public class Screen implements com.badlogic.gdx.Screen {
         if(graphicsCards.get(2) != null) graphicsCards.get(2).draw(batch);
     }
 
+    float currentInd;
+
     public void createCards(){
         detectCollision();
 
         if(graphicsCards.get(0) == null){
             graphicsCards.set(0, new GraphicsCard(atlas,100,50,WORLD_WIDTH,WORLD_HEIGHT));
+            currentInd = (float) ((Math.random() * (2 - 0) + 0));
         }
         if(graphicsCards.get(1) == null){
             graphicsCards.set(1, new GraphicsCard(atlas,100,50,WORLD_WIDTH,WORLD_HEIGHT));
+            currentInd = (float) ((Math.random() * (2 - 0) + 0));
         }
         if(graphicsCards.get(2) == null){
             graphicsCards.set(2, new GraphicsCard(atlas,100,50,WORLD_WIDTH,WORLD_HEIGHT));
+            currentInd = (float) ((Math.random() * (2 - 0) + 0));
         }
     }
 
@@ -91,8 +96,6 @@ public class Screen implements com.badlogic.gdx.Screen {
     public void show() {
 
     }
-
-    float currentInd = (float) ((Math.random() * (2 - 0)) + 0);
 
     @Override
     public void render(float delta) {
