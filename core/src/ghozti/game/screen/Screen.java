@@ -14,7 +14,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import ghozti.game.entities.graphicsCard.GraphicsCard;
 import ghozti.game.entities.npc.Scalper;
 import ghozti.game.entities.player.Player;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -93,6 +92,8 @@ public class Screen implements com.badlogic.gdx.Screen {
 
     }
 
+    float currentInd = (float) ((Math.random() * (2 - 0)) + 0);
+
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(.128f,.128f,.128f,.1f);
@@ -104,7 +105,7 @@ public class Screen implements com.badlogic.gdx.Screen {
 
         renderCards(batch);
         player.draw(batch,delta);
-        //scalper.draw(batch,delta,card);
+        scalper.draw(batch,delta,graphicsCards.get((int) currentInd));
 
         batch.end();
     }

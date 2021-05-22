@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import ghozti.game.entities.npc.Scalper;
 import ghozti.game.entities.player.Player;
-import org.w3c.dom.Text;
 
 public class GraphicsCard {
 

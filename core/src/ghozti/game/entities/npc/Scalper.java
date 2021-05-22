@@ -35,15 +35,15 @@ public class Scalper {
     public void move(float delta, GraphicsCard card){
 
         if(card != null){
-            if(card.getX() > getX()+55){//<-- this number is used as a "stabilizer" which basically allows the scalper to move smoothly without "jumping" when moving
+            if(card.getX() > getX()+25){//<-- this number is used as a "stabilizer" which basically allows the scalper to move smoothly without "jumping" when moving
                 boundingRect.setPosition(getX()+speed*delta, getY());
-            }else if(card.getX() < getX()-55){
+            }else if(card.getX() < getX()-25){
                 boundingRect.setPosition(getX()-speed*delta, getY());
             }
 
-            if(card.getY() > getY()+55){
+            if(card.getY() > getY()+25){
                 boundingRect.setPosition(getX(),getY()+speed*delta);
-            }else if(card.getY() < getY()-55){
+            }else if(card.getY() < getY()-25){
                 boundingRect.setPosition(getX(),getY()-speed*delta);
             }
         }
