@@ -6,10 +6,14 @@ import com.badlogic.gdx.math.Rectangle;
 import ghozti.game.entities.npc.Scalper;
 import ghozti.game.entities.player.Player;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public abstract class PowerUp {
 
     TextureRegion texture;
     Rectangle boundingRect;
+    boolean startedTimer;
     float time;
 
     public PowerUp(TextureRegion texture, float width, float height){
@@ -28,11 +32,11 @@ public abstract class PowerUp {
     }
 
     public void startTimer(){
-
+        //TODO do timer stuff
     }
 
     public boolean isValid(){
-
+        return time == 0;
     }
 
     public abstract void applyEffect(Scalper scalper, Player player);

@@ -24,8 +24,8 @@ public class Hud {
         //sets font stuff
         fontParameter.size = 172;
         fontParameter.borderWidth = 3.6f;
-        fontParameter.color = new Color(1,1,1,1f);
-        fontParameter.borderColor = new Color(1,1,1,1f);
+        fontParameter.color = new Color(1,1,1,.3f);
+        fontParameter.borderColor = new Color(1,1,1,.3f);
 
         font = fontGenerator.generateFont(fontParameter);
 
