@@ -42,8 +42,11 @@ public class Hud {
         sectionWidth = Screen.WORLD_WIDTH/3;
     }
 
-    public void render(Batch batch, float score){
-        font.draw(batch,"score",leftx,row1Y,sectionWidth, Align.left,false);
-        font.draw(batch, String.format(Locale.getDefault(),"%06d",(int)score),leftx,row2Y,sectionWidth, Align.left,false);
+    public void render(Batch batch, float pscore,float sscore){
+        font.draw(batch,"Your score",leftx,row1Y,sectionWidth, Align.left,false);
+        font.draw(batch, String.format(Locale.getDefault(),"%06d",(int)pscore),leftx,row2Y,sectionWidth, Align.left,false);
+
+        font.draw(batch,"Scalper score",leftx,row1Y-200,sectionWidth, Align.left,false);
+        font.draw(batch, String.format(Locale.getDefault(),"%06d",(int)sscore),leftx,row2Y-200,sectionWidth, Align.left,false);
     }
 }

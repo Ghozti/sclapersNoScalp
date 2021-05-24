@@ -18,6 +18,8 @@ public class Scalper {
     TextureRegion currentTexture;
     //boundingRect
     com.badlogic.gdx.math.Rectangle boundingRect;
+    //hud
+    float score;
 
     public Scalper(float speed,float width, float height,float x, float y){
         this.speed = speed;
@@ -31,6 +33,8 @@ public class Scalper {
     public float getWidth() {return boundingRect.width;}
     public float getX() {return boundingRect.x;}
     public float getY(){return boundingRect.y;}
+    public void setScore(float score){this.score = score;}
+    public float getScore() {return score; }
 
     public void move(float delta, GraphicsCard card){
 
