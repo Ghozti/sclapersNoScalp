@@ -17,7 +17,6 @@ public class Player {
     com.badlogic.gdx.math.Rectangle boundingRect;
     //HUD
     float score;
-    static float lives;
 
     //constructor
     public Player(TextureRegion playerTexture,float speed, float width, float height, float x, float y){
@@ -33,12 +32,8 @@ public class Player {
     public float getWidth() {return boundingRect.width;}
     public float getX() {return boundingRect.x;}
     public float getY(){return boundingRect.y;}
+    public float getScore(){return score;}
 
-    public void determineHeartTexture(){
-        if(lives == 3);
-        else if(lives == 2);
-        else if(lives == 1);
-    }
 
     private void verifyPos(float x,float y){
         /*

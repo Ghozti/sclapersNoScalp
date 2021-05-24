@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.utils.Align;
 import ghozti.game.screen.Screen;
 
+import java.util.Locale;
+
 public class Hud {
 
     float score,time;
@@ -40,8 +42,8 @@ public class Hud {
         sectionWidth = Screen.WORLD_WIDTH/3;
     }
 
-    public void render(Batch batch){
+    public void render(Batch batch, float score){
         font.draw(batch,"score",leftx,row1Y,sectionWidth, Align.left,false);
-        //font.draw(batch,"score",leftx,row1Y,sectionWidth, Align.left,false);
+        font.draw(batch, String.format(Locale.getDefault(),"%06d",(int)score),leftx,row2Y,sectionWidth, Align.left,false);
     }
 }
