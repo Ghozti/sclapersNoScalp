@@ -13,6 +13,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import ghozti.game.entities.graphicsCard.GraphicsCard;
 import ghozti.game.entities.npc.Scalper;
 import ghozti.game.entities.player.Player;
+import ghozti.game.entities.player.hud.Hud;
+
 import java.util.ArrayList;
 
 public class Screen implements com.badlogic.gdx.Screen {
@@ -31,6 +33,9 @@ public class Screen implements com.badlogic.gdx.Screen {
     //World
     public static final float WORLD_HEIGHT = 1080;
     public static final float WORLD_WIDTH = 1920;
+
+    //hud
+    Hud hud;
 
     //objects
     Player player;
@@ -55,6 +60,8 @@ public class Screen implements com.badlogic.gdx.Screen {
 
         player = new Player(atlas.findRegion("amogus"),375,100,100,1000,1000);
         scalper = new Scalper(270,100,100,10,10);
+
+        hud = new Hud();
     }
 
     public void renderCards(Batch batch){
@@ -100,6 +107,9 @@ public class Screen implements com.badlogic.gdx.Screen {
         createCards();
 
         batch.begin();
+
+        hud.render(batch);
+
         batch.draw(background,0,0,WORLD_WIDTH,WORLD_HEIGHT);
 
         renderCards(batch);

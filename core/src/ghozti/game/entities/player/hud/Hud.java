@@ -2,8 +2,10 @@ package ghozti.game.entities.player.hud;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.utils.Align;
 import ghozti.game.screen.Screen;
 
 public class Hud {
@@ -36,6 +38,10 @@ public class Hud {
         row1Y = Screen.WORLD_HEIGHT - verticalMargin;
         row2Y = row1Y - verticalMargin - font.getCapHeight();
         sectionWidth = Screen.WORLD_WIDTH/3;
+    }
 
+    public void render(Batch batch){
+        font.draw(batch,"score",leftx,row1Y,sectionWidth, Align.left,false);
+        //font.draw(batch,"score",leftx,row1Y,sectionWidth, Align.left,false);
     }
 }
