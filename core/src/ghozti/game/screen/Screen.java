@@ -108,13 +108,13 @@ public class Screen implements com.badlogic.gdx.Screen {
 
         batch.begin();
 
-        hud.render(batch);
-
         batch.draw(background,0,0,WORLD_WIDTH,WORLD_HEIGHT);
 
         renderCards(batch);
         player.draw(batch,delta);
         scalper.draw(batch,delta,graphicsCards.get((int) currentInd));
+
+        hud.render(batch);
 
         batch.end();
     }

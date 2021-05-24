@@ -20,15 +20,15 @@ public class Hud {
         FreeTypeFontGenerator.FreeTypeFontParameter fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
 
         //sets font stuff
-        fontParameter.size = 72;
+        fontParameter.size = 172;
         fontParameter.borderWidth = 3.6f;
-        fontParameter.color = new Color(1,1,1,0.3f);
-        fontParameter.borderColor = new Color(0,0,0,0.3f);
+        fontParameter.color = new Color(1,1,1,1f);
+        fontParameter.borderColor = new Color(1,1,1,1f);
 
         font = fontGenerator.generateFont(fontParameter);
 
         //sets scale of font
-        font.getData().setScale(0.08f);
+        font.getData().setScale(.3f);
 
         //calculates hud margins,etc
         verticalMargin = font.getCapHeight()/2;
