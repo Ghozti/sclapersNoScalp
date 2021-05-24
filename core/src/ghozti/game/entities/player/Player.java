@@ -32,6 +32,7 @@ public class Player {
     public float getWidth() {return boundingRect.width;}
     public float getX() {return boundingRect.x;}
     public float getY(){return boundingRect.y;}
+    public void setScore(float score){this.score = score;}
     public float getScore(){return score;}
 
 
