@@ -3,6 +3,7 @@ package ghozti.game.additionals;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import ghozti.game.entities.npc.Scalper;
 import ghozti.game.entities.player.Player;
+import ghozti.game.screen.Screen;
 
 public class SpeedBoost extends PowerUp {
 
@@ -13,7 +14,7 @@ public class SpeedBoost extends PowerUp {
 
     @Override
     public void applyEffect(Scalper scalper, Player player) {
-        player.setSpeed(player.getSpeed() + 50);
+            player.setSpeed(500);
     }
 
     @Override

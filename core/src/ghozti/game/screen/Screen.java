@@ -18,7 +18,6 @@ import ghozti.game.entities.graphicsCard.GraphicsCard;
 import ghozti.game.entities.npc.Scalper;
 import ghozti.game.entities.player.Player;
 import ghozti.game.entities.player.hud.Hud;
-
 import java.util.ArrayList;
 
 public class Screen implements com.badlogic.gdx.Screen {
@@ -73,9 +72,9 @@ public class Screen implements com.badlogic.gdx.Screen {
 
     public void updatePowerUp(){
         if(currentPowerUp.isTouched(player)){
+            currentPowerUp.applyEffect(scalper,player);
             currentPowerUp = powerUps.get((int) ((Math.random() * (powerUps.size() - 0)) + 0));
             currentPowerUp.setNewCoordinates();
-            System.out.println(currentPowerUp.getX()+ "***" +currentPowerUp.getY());
         }
     }
 
@@ -115,8 +114,11 @@ public class Screen implements com.badlogic.gdx.Screen {
 
     }
 
+    public static float delta;
+
     @Override
     public void render(float delta) {
+        Screen.delta = delta;
         //System.out.println(Gdx.graphics.getFramesPerSecond());
         Gdx.gl.glClearColor(.128f,.128f,.128f,.1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

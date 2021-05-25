@@ -13,8 +13,6 @@ public abstract class PowerUp {
     TextureAtlas atlas = new TextureAtlas("boosters.atlas");
     TextureRegion texture;
     Rectangle boundingRect;
-    boolean startedTimer;
-    float time;
 
     public PowerUp(float width, float height){
         float[] coordinates = determinePos(Screen.WORLD_WIDTH,Screen.WORLD_HEIGHT);
@@ -37,14 +35,6 @@ public abstract class PowerUp {
 
     public boolean isTouched(Player player){
         return player.getBoundingRect().overlaps(boundingRect);
-    }
-
-    public void startTimer(){
-        //TODO do timer stuff
-    }
-
-    public boolean isValid(){
-        return true;
     }
 
     public abstract void applyEffect(Scalper scalper, Player player);
