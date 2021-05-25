@@ -75,6 +75,7 @@ public class Screen implements com.badlogic.gdx.Screen {
         if(currentPowerUp.isTouched(player)){
             currentPowerUp = powerUps.get((int) ((Math.random() * (powerUps.size() - 0)) + 0));
             currentPowerUp.setNewCoordinates();
+            System.out.println(currentPowerUp.getX()+ "***" +currentPowerUp.getY());
         }
     }
 
