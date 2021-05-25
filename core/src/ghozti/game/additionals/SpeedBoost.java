@@ -8,6 +8,7 @@ public class SpeedBoost extends PowerUp {
 
     public SpeedBoost(float width, float height) {
         super(width, height);
+        texture = atlas.findRegion("speedBoost");
     }
 
     @Override

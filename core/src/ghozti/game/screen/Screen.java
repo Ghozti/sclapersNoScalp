@@ -11,7 +11,9 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import ghozti.game.additionals.PowerUp;
+import ghozti.game.additionals.ScalperSlower;
 import ghozti.game.additionals.SpeedBoost;
+import ghozti.game.additionals.StockCrash;
 import ghozti.game.entities.graphicsCard.GraphicsCard;
 import ghozti.game.entities.npc.Scalper;
 import ghozti.game.entities.player.Player;
@@ -43,7 +45,8 @@ public class Screen implements com.badlogic.gdx.Screen {
     Player player;
     Scalper scalper;
     ArrayList<GraphicsCard> graphicsCards = new ArrayList<>();
-    ArrayList<PowerUp> powerUp = new ArrayList<>();
+    ArrayList<PowerUp> powerUps = new ArrayList<>();
+    PowerUp currentPowerUp;
 
     public Screen(){
         //sets camera, viewport
@@ -59,15 +62,19 @@ public class Screen implements com.badlogic.gdx.Screen {
             graphicsCards.add(new GraphicsCard(atlas,100,50,WORLD_WIDTH,WORLD_HEIGHT));
         }
         powerUps.add(new SpeedBoost(100,100));
+        powerUps.add(new StockCrash(100,100));
+        powerUps.add(new ScalperSlower(100,100));
 
+        currentPowerUp = powerUps.get((int) ((Math.random() * (powerUps.size() - 0)) + 0));
         player = new Player(atlas.findRegion("amogus"),375,100,100,1000,1000);
         scalper = new Scalper(270,100,100,10,10);
         hud = new Hud();
     }
 
     public void updatePowerUp(){
-        if (powerUps.get(0).isTouched(player)){
-
+        if(currentPowerUp.isTouched(player)){
+            currentPowerUp = powerUps.get((int) ((Math.random() * (powerUps.size() - 0)) + 0));
+            currentPowerUp.setNewCoordinates();
         }
     }
 
@@ -118,8 +125,7 @@ public class Screen implements com.badlogic.gdx.Screen {
 
         batch.draw(background,0,0,WORLD_WIDTH,WORLD_HEIGHT);
 
-        if(powerUps.get(0) != null) powerUps.get(0).draw(batch);
-
+        currentPowerUp.draw(batch);
         renderCards(batch);
         player.draw(batch,delta);
         scalper.draw(batch,delta,graphicsCards.get((int) currentInd));

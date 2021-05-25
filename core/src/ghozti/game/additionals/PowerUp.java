@@ -17,7 +17,6 @@ public abstract class PowerUp {
     float time;
 
     public PowerUp(float width, float height){
-        texture = atlas.findRegion("speedBoost");
         float[] coordinates = determinePos(Screen.WORLD_WIDTH,Screen.WORLD_HEIGHT);
         boundingRect = new Rectangle(coordinates[0],coordinates[1],width,height);
     }
@@ -32,6 +31,10 @@ public abstract class PowerUp {
         return new float[]{(float) ((Math.random() * ((worldWidth - 60) - 60)) + 60), (float) ((Math.random() * ((worldHeight - 60) - 60)) + 60)};
     }
 
+    public void setNewCoordinates(){
+        boundingRect.setPosition(boundingRect.x = determinePos(Screen.WORLD_WIDTH,Screen.WORLD_HEIGHT)[0],boundingRect.x = determinePos(Screen.WORLD_WIDTH,Screen.WORLD_HEIGHT)[1]);
+    }
+
     public boolean isTouched(Player player){
         return player.getBoundingRect().overlaps(boundingRect);
     }
@@ -41,7 +44,7 @@ public abstract class PowerUp {
     }
 
     public boolean isValid(){
-        return time == 0;
+        return true;
     }
 
     public abstract void applyEffect(Scalper scalper, Player player);
