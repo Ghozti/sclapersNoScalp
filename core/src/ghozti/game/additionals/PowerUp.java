@@ -46,5 +46,5 @@ public abstract class PowerUp {
 
     public abstract void applyEffect(Scalper scalper, Player player);
 
-    public abstract void renderPowerUP(Batch batch);
+    public abstract void draw(Batch batch);
 }

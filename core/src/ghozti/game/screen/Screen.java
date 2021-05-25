@@ -41,9 +41,9 @@ public class Screen implements com.badlogic.gdx.Screen {
 
     //objects
     Player player;
-    PowerUp powerUp;
     Scalper scalper;
     ArrayList<GraphicsCard> graphicsCards = new ArrayList<>();
+    ArrayList<PowerUp> powerUp = new ArrayList<>();
 
     public Screen(){
         //sets camera, viewport
@@ -55,15 +55,20 @@ public class Screen implements com.badlogic.gdx.Screen {
         batch = new SpriteBatch();
 
         //initializes the game objects
-        //card = new GraphicsCard(atlas.findRegion("3070"),100,50,WORLD_WIDTH,WORLD_HEIGHT);
         for (int i = 0; i < 3; i++) {
             graphicsCards.add(new GraphicsCard(atlas,100,50,WORLD_WIDTH,WORLD_HEIGHT));
         }
+        powerUps.add(new SpeedBoost(100,100));
 
         player = new Player(atlas.findRegion("amogus"),375,100,100,1000,1000);
         scalper = new Scalper(270,100,100,10,10);
-        powerUp = new SpeedBoost(100,100);
         hud = new Hud();
+    }
+
+    public void updatePowerUp(){
+        if (powerUps.get(0).isTouched(player)){
+
+        }
     }
 
     public void renderCards(Batch batch){
@@ -104,19 +109,20 @@ public class Screen implements com.badlogic.gdx.Screen {
 
     @Override
     public void render(float delta) {
+        //System.out.println(Gdx.graphics.getFramesPerSecond());
         Gdx.gl.glClearColor(.128f,.128f,.128f,.1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         createCards();
-
+        updatePowerUp();
         batch.begin();
 
         batch.draw(background,0,0,WORLD_WIDTH,WORLD_HEIGHT);
 
+        if(powerUps.get(0) != null) powerUps.get(0).draw(batch);
+
         renderCards(batch);
-        powerUp.renderPowerUP(batch);
         player.draw(batch,delta);
         scalper.draw(batch,delta,graphicsCards.get((int) currentInd));
-
         hud.render(batch,player.getScore(),scalper.getScore());
 
         batch.end();

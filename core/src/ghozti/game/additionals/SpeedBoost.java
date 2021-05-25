@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import ghozti.game.entities.npc.Scalper;
 import ghozti.game.entities.player.Player;
 
-public class SpeedBoost extends PowerUp{
+public class SpeedBoost extends PowerUp {
 
     public SpeedBoost(float width, float height) {
         super(width, height);
@@ -16,7 +16,7 @@ public class SpeedBoost extends PowerUp{
     }
 
     @Override
-    public void renderPowerUP(Batch batch) {
-        batch.draw(texture,getX(),getY(),getWidth(),getHeight());
+    public void draw(Batch batch) {
+        batch.draw(texture, getX(), getY(), getWidth(), getHeight());
     }
 }
