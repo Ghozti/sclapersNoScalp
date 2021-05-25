@@ -4,9 +4,6 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import ghozti.game.entities.npc.Scalper;
 import ghozti.game.entities.player.Player;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class ScalperSlower extends PowerUp{
 
     public ScalperSlower(float width, float height) {
