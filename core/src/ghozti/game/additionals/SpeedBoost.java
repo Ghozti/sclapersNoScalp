@@ -1,14 +1,13 @@
 package ghozti.game.additionals;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import ghozti.game.entities.npc.Scalper;
 import ghozti.game.entities.player.Player;
 
 public class SpeedBoost extends PowerUp{
 
-    public SpeedBoost(TextureRegion texture, float width, float height) {
-        super(texture, width, height);
+    public SpeedBoost(float width, float height) {
+        super(width, height);
     }
 
     @Override

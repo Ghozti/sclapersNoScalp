@@ -1,23 +1,22 @@
 package ghozti.game.additionals;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import ghozti.game.entities.npc.Scalper;
 import ghozti.game.entities.player.Player;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 public abstract class PowerUp {
 
+    TextureAtlas atlas = new TextureAtlas("boosters.atlas");
     TextureRegion texture;
     Rectangle boundingRect;
     boolean startedTimer;
     float time;
 
-    public PowerUp(TextureRegion texture, float width, float height){
-        this.texture = texture;
+    public PowerUp(float width, float height){
+        texture = atlas.findRegion("speedBoost");
         boundingRect = new Rectangle(100,100,width,height);
     }
 

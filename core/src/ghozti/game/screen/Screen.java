@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import ghozti.game.additionals.PowerUp;
+import ghozti.game.additionals.SpeedBoost;
 import ghozti.game.entities.graphicsCard.GraphicsCard;
 import ghozti.game.entities.npc.Scalper;
 import ghozti.game.entities.player.Player;
@@ -39,7 +41,7 @@ public class Screen implements com.badlogic.gdx.Screen {
 
     //objects
     Player player;
-    //GraphicsCard card;
+    PowerUp powerUp;
     Scalper scalper;
     ArrayList<GraphicsCard> graphicsCards = new ArrayList<>();
 
@@ -60,7 +62,7 @@ public class Screen implements com.badlogic.gdx.Screen {
 
         player = new Player(atlas.findRegion("amogus"),375,100,100,1000,1000);
         scalper = new Scalper(270,100,100,10,10);
-
+        powerUp = new SpeedBoost(100,100);
         hud = new Hud();
     }
 
@@ -111,6 +113,7 @@ public class Screen implements com.badlogic.gdx.Screen {
         batch.draw(background,0,0,WORLD_WIDTH,WORLD_HEIGHT);
 
         renderCards(batch);
+        powerUp.renderPowerUP(batch);
         player.draw(batch,delta);
         scalper.draw(batch,delta,graphicsCards.get((int) currentInd));
 

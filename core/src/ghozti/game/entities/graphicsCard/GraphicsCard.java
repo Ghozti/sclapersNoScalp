@@ -44,8 +44,9 @@ public class GraphicsCard {
     public float getY(){return boundingRect.y;}
 
     public boolean collides(Player player, Scalper scalper){
+        //sets scores for both scalper and player when collides
         if(player.getBoundingRect().overlaps(boundingRect)) player.setScore(player.getScore()+1);
-        else if (scalper.getBoundingRect().overlaps(boundingRect)) scalper.setScore(scalper.getScore()+1);
+        else if (scalper.getBoundingRect().overlaps(boundingRect)) scalper.setScore(scalper.getScore()+2);
         return player.getBoundingRect().overlaps(boundingRect) || scalper.getBoundingRect().overlaps(boundingRect);
     }
 
