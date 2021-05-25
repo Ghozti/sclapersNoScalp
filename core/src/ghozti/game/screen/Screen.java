@@ -66,7 +66,7 @@ public class Screen implements com.badlogic.gdx.Screen {
 
         currentPowerUp = powerUps.get((int) ((Math.random() * (powerUps.size() - 0)) + 0));
         player = new Player(atlas.findRegion("amogus"),375,100,100,1000,1000);
-        scalper = new Scalper(270,100,100,10,10);
+        scalper = new Scalper(375,100,100,10,10);
         hud = new Hud();
     }
 
