@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import ghozti.game.entities.npc.Scalper;
 import ghozti.game.entities.player.Player;
+import ghozti.game.screen.Screen;
 
 public abstract class PowerUp {
 
@@ -17,7 +18,8 @@ public abstract class PowerUp {
 
     public PowerUp(float width, float height){
         texture = atlas.findRegion("speedBoost");
-        boundingRect = new Rectangle(100,100,width,height);
+        float[] coordinates = determinePos(Screen.WORLD_WIDTH,Screen.WORLD_HEIGHT);
+        boundingRect = new Rectangle(coordinates[0],coordinates[1],width,height);
     }
 
     public float getWidth(){return boundingRect.width;};
@@ -25,6 +27,10 @@ public abstract class PowerUp {
     public float getX(){return boundingRect.x;}
     public float getY() {return boundingRect.y;}
     public Rectangle getBoundingRect(){return boundingRect;}
+
+    public float[] determinePos(float worldWidth,float worldHeight){
+        return new float[]{(float) ((Math.random() * ((worldWidth - 60) - 60)) + 60), (float) ((Math.random() * ((worldHeight - 60) - 60)) + 60)};
+    }
 
     public boolean isTouched(Player player){
         return player.getBoundingRect().overlaps(boundingRect);
