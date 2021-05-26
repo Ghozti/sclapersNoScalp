@@ -72,8 +72,7 @@ public class Screen implements com.badlogic.gdx.Screen {
         hud = new Hud();
 
         //plays the background music
-        //2019-01-02_-_8_Bit_Menu_-_David_Renda_-_FesliyanStudios.com.mp3
-        //2020-03-22_-_A_Bit_Of_Hope_-_David_Fesliyan.mp3
+        //2019-01-02_-_8_Bit_Menu_-_David_Renda_-_FesliyanStudios.com.wav
 
         Music music = Gdx.audio.newMusic(Gdx.files.internal("2019-01-02_-_8_Bit_Menu_-_David_Renda_-_FesliyanStudios.com.wav"));
         music.setVolume(0.5f);
@@ -83,11 +82,15 @@ public class Screen implements com.badlogic.gdx.Screen {
         //TODO **************COMMENT EVERYWHERE*************
     }
 
-    public void renderPowerUp(){
+    public void renderPowerUp(Batch batch){
         currentPowerUp.draw(batch);
     }
 
     public void updatePowerUp(float delta){
+        if(currentPowerUp.spawnNew){
+            currentPowerUp = null;
+            currentPowerUp = new SpeedBoost(100,100);
+        }
         currentPowerUp.detectCollision(scalper,player);
         currentPowerUp.startEffectTimer(delta,scalper,player);
         currentPowerUp.startSpawnerTimer(delta);
@@ -148,14 +151,14 @@ public class Screen implements com.badlogic.gdx.Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         createCards();
-        //updatePowerUp(delta);
+        updatePowerUp(delta);
 
         batch.begin();
 
         batch.draw(background,0,0,WORLD_WIDTH,WORLD_HEIGHT);
 
         renderCards(batch);
-        //renderPowerUp();
+        renderPowerUp(batch);
         player.draw(batch,delta);
         scalper.draw(batch,delta,graphicsCards.get((int) currentInd));
         hud.render(batch,player.getScore(),scalper.getScore());

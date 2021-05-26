@@ -26,6 +26,6 @@ public class StockCrash extends PowerUp{
 
     @Override
     public void draw(Batch batch) {
-        batch.draw(texture, getX(), getY(), getWidth(), getHeight());
+        if (!hide) batch.draw(texture, getX(), getY(), getWidth(), getHeight());
     }
 }

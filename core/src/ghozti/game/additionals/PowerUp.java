@@ -16,10 +16,10 @@ public abstract class PowerUp {
     TextureRegion texture;
     Rectangle boundingRect;
 
-    boolean spawnNew;
+    public boolean spawnNew;
     boolean activated;
     boolean effectApplied;
-    boolean drawReady;
+    boolean hide;
 
     public PowerUp(float width, float height){
         float[] coordinates = determinePos(Screen.WORLD_WIDTH,Screen.WORLD_HEIGHT);
@@ -37,10 +37,12 @@ public abstract class PowerUp {
     }
 
     public void detectCollision(Scalper sclaper,Player player){
+        System.out.println(hide);
         if(player.getBoundingRect().overlaps(boundingRect)) {
             applyEffect(sclaper,player);
             effectApplied = true;
             activated  = true;
+            hide = true;
         }
     }
 
