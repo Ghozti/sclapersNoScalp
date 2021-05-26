@@ -17,7 +17,7 @@ public abstract class PowerUp {
     Rectangle boundingRect;
 
     private float counter;
-    public boolean isActive;
+    private float counter2;
 
     public PowerUp(float width, float height){
         float[] coordinates = determinePos(Screen.WORLD_WIDTH,Screen.WORLD_HEIGHT);
@@ -34,12 +34,10 @@ public abstract class PowerUp {
         return new float[]{(float) ((Math.random() * ((worldWidth - 60) - 60)) + 60), (float) ((Math.random() * ((worldHeight - 60) - 60)) + 60)};
     }
 
-    public void setNewCoordinates(){
-        boundingRect.setPosition(boundingRect.x = determinePos(Screen.WORLD_WIDTH,Screen.WORLD_HEIGHT)[0],boundingRect.x = determinePos(Screen.WORLD_WIDTH,Screen.WORLD_HEIGHT)[1]);
-    }
-
     public boolean isTouched(Player player){
-        if(player.getBoundingRect().overlaps(boundingRect)) isActive = true;
+        if(player.getBoundingRect().overlaps(boundingRect)) {
+
+        }
         return player.getBoundingRect().overlaps(boundingRect);
     }
 
@@ -48,15 +46,18 @@ public abstract class PowerUp {
         sound.play(1.0f);
     }
 
+    public void startSpawnerTimer(float delta){
+        counter2 += delta;
+        if (counter2 > 10.0) {
+            counter2 = 0;
+        }
+    }
+
     public void startTimer(float delta,Scalper scalper, Player player){
-        if(isActive) {
-            counter += delta;
-            if (counter > 5.0) {
-                counter = 0;
-                isActive = false;
-                reverseEffect(scalper,player);
-                System.out.println("all good");
-            }
+        counter += delta;
+        if (counter > 5.0) {
+            counter = 0;
+            reverseEffect(scalper,player);
         }
     }
 

@@ -83,13 +83,16 @@ public class Screen implements com.badlogic.gdx.Screen {
         //TODO **************COMMENT EVERYWHERE*************
     }
 
-    public void updatePowerUp(float delta){
-        currentPowerUp.startTimer(delta,scalper,player);
-        if(currentPowerUp.isTouched(player)){
-            currentPowerUp.applyEffect(scalper,player);
-            //currentPowerUp = powerUps.get((int) ((Math.random() * (powerUps.size() - 0)) + 0));
-            currentPowerUp.setNewCoordinates();
-        }
+    public void renderPowerUp(){
+        currentPowerUp.draw(batch);
+    }
+
+    public void createPowerUp(){
+        //TODO work on making powerups behave like graphics cards
+    }
+
+    public void detectPowerUpCollision(){
+
     }
 
     public void renderCards(Batch batch){
@@ -142,18 +145,18 @@ public class Screen implements com.badlogic.gdx.Screen {
 
     @Override
     public void render(float delta) {
-
         //System.out.println(Gdx.graphics.getFramesPerSecond());
         Gdx.gl.glClearColor(.128f,.128f,.128f,.1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         createCards();
-        updatePowerUp(delta);
+        createPowerUp();
         batch.begin();
 
         batch.draw(background,0,0,WORLD_WIDTH,WORLD_HEIGHT);
 
         currentPowerUp.draw(batch);
         renderCards(batch);
+        renderPowerUp();
         player.draw(batch,delta);
         scalper.draw(batch,delta,graphicsCards.get((int) currentInd));
         hud.render(batch,player.getScore(),scalper.getScore());
