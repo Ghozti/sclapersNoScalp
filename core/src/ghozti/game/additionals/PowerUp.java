@@ -1,5 +1,7 @@
 package ghozti.game.additionals;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -35,6 +37,11 @@ public abstract class PowerUp {
 
     public boolean isTouched(Player player){
         return player.getBoundingRect().overlaps(boundingRect);
+    }
+
+    protected void playSound(){
+        Sound sound = Gdx.audio.newSound(Gdx.files.internal("bonus.wav"));
+        sound.play(1.0f);
     }
 
     public abstract void applyEffect(Scalper scalper, Player player);

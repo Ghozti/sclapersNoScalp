@@ -13,6 +13,7 @@ public class ScalperSlower extends PowerUp{
 
     @Override
     public void applyEffect(Scalper scalper, Player player) {
+        playSound();
         scalper.setSpeed(scalper.getSpeed()/1.8f);
     }
 

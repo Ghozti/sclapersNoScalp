@@ -1,6 +1,7 @@
 package ghozti.game.screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -104,9 +105,21 @@ public class Screen implements com.badlogic.gdx.Screen {
     }
 
     public void detectCollision(){
-        if(graphicsCards.get(0).collides(player,scalper)) graphicsCards.set(0,null);
-        if(graphicsCards.get(1).collides(player,scalper)) graphicsCards.set(1,null);
-        if(graphicsCards.get(2).collides(player,scalper)) graphicsCards.set(2,null);
+        if(graphicsCards.get(0).collides(player,scalper)) {
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("unlock.wav"));
+            sound.play(1.0f);
+            graphicsCards.set(0,null);
+        }
+        if(graphicsCards.get(1).collides(player,scalper)) {
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("unlock.wav"));
+            sound.play(1.0f);
+            graphicsCards.set(1,null);
+        }
+        if(graphicsCards.get(2).collides(player,scalper)) {
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("unlock.wav"));
+            sound.play(1.0f);
+            graphicsCards.set(2,null);
+        }
     }
 
     @Override
