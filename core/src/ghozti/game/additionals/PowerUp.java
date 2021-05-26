@@ -16,6 +16,9 @@ public abstract class PowerUp {
     TextureRegion texture;
     Rectangle boundingRect;
 
+    private float counter;
+    public boolean isActive;
+
     public PowerUp(float width, float height){
         float[] coordinates = determinePos(Screen.WORLD_WIDTH,Screen.WORLD_HEIGHT);
         boundingRect = new Rectangle(coordinates[0],coordinates[1],width,height);
@@ -42,6 +45,16 @@ public abstract class PowerUp {
     protected void playSound(){
         Sound sound = Gdx.audio.newSound(Gdx.files.internal("bonus.wav"));
         sound.play(1.0f);
+    }
+
+    public void updatePowerUp(float delta){
+        System.out.println(counter);
+        System.out.println(isActive);
+
+        counter += delta;
+        if (counter > 5) {
+            counter = 0;
+        }
     }
 
     public abstract void applyEffect(Scalper scalper, Player player);

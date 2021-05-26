@@ -1,6 +1,7 @@
 package ghozti.game.screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
@@ -69,9 +70,20 @@ public class Screen implements com.badlogic.gdx.Screen {
         player = new Player(atlas.findRegion("amogus"),375,100,100,1000,1000);
         scalper = new Scalper(375,100,100,10,10);
         hud = new Hud();
+
+        //plays the background music
+        //2019-01-02_-_8_Bit_Menu_-_David_Renda_-_FesliyanStudios.com.mp3
+        //2020-03-22_-_A_Bit_Of_Hope_-_David_Fesliyan.mp3
+
+        Music music = Gdx.audio.newMusic(Gdx.files.internal("2019-01-02_-_8_Bit_Menu_-_David_Renda_-_FesliyanStudios.com.mp3"));
+        music.setVolume(0.5f);
+        music.setLooping(true);
+        music.play();
+
+        //TODO **************COMMENT EVERYWHERE*************
     }
 
-    public void updatePowerUp(){
+    public void updatePowerUp(float delta){
         if(currentPowerUp.isTouched(player)){
             currentPowerUp.applyEffect(scalper,player);
             currentPowerUp = powerUps.get((int) ((Math.random() * (powerUps.size() - 0)) + 0));
@@ -136,7 +148,7 @@ public class Screen implements com.badlogic.gdx.Screen {
         Gdx.gl.glClearColor(.128f,.128f,.128f,.1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         createCards();
-        updatePowerUp();
+        updatePowerUp(delta);
         batch.begin();
 
         batch.draw(background,0,0,WORLD_WIDTH,WORLD_HEIGHT);
