@@ -18,7 +18,7 @@ public abstract class PowerUp {
 
     public boolean spawnNew;
     boolean activated;
-    boolean effectApplied;
+    //boolean effectApplied;
     boolean hide;
 
     public PowerUp(float width, float height){
@@ -37,8 +37,10 @@ public abstract class PowerUp {
         boundingRect.setPosition(coordinates[0],coordinates[1]);
         spawnNew = false;
         activated = false;
-        effectApplied = false;
+        //effectApplied = false;
         hide = false;
+        counter = 0;
+        counter2 = 0;
     }
 
     public float[] determinePos(float worldWidth,float worldHeight){
@@ -46,10 +48,11 @@ public abstract class PowerUp {
     }
 
     public void detectCollision(Scalper sclaper,Player player){
-        System.out.println(hide);
-        if(player.getBoundingRect().overlaps(boundingRect)) {
+        //System.out.println(hide);
+        //System.out.println(player.getSpeed());
+        if(player.getBoundingRect().overlaps(boundingRect) && !activated) {
             applyEffect(sclaper,player);
-            effectApplied = true;
+            //effectApplied = true;
             activated  = true;
             hide = true;
         }
@@ -63,6 +66,7 @@ public abstract class PowerUp {
     private float counter2;
 
     public void startSpawnerTimer(float delta){
+        System.out.println(counter2 + "***");
         if(activated) {
             counter2 += delta;
             if (counter2 > 10.0) {
@@ -75,11 +79,12 @@ public abstract class PowerUp {
     private float counter;
 
     public void startEffectTimer(float delta,Scalper scalper, Player player){
+        System.out.println(counter + "**");
         if(activated) {
             counter += delta;
             if (counter > 5.0) {
-                counter = 0;
                 reverseEffect(scalper, player);
+                counter = 0;
             }
         }
     }

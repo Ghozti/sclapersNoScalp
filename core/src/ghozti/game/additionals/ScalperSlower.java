@@ -13,10 +13,11 @@ public class ScalperSlower extends PowerUp{
 
     @Override
     public void applyEffect(Scalper scalper, Player player) {
-        if (!effectApplied) {
+        //if (!effectApplied) {
+        System.out.println("****");
             playSound();
             scalper.setSpeed(scalper.getSpeed() / 1.8f);
-        }
+        //}
     }
 
     @Override

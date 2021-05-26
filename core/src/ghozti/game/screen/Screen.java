@@ -156,7 +156,7 @@ public class Screen implements com.badlogic.gdx.Screen {
 
     @Override
     public void render(float delta) {
-        System.out.println(Gdx.graphics.getFramesPerSecond());
+        //System.out.println(Gdx.graphics.getFramesPerSecond());
         Gdx.gl.glClearColor(.128f,.128f,.128f,.1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
