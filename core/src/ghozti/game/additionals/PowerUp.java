@@ -32,6 +32,15 @@ public abstract class PowerUp {
     public float getY() {return boundingRect.y;}
     public Rectangle getBoundingRect(){return boundingRect;}
 
+    public void reset(){
+        float[] coordinates = determinePos(Screen.WORLD_WIDTH,Screen.WORLD_HEIGHT);
+        boundingRect.setPosition(coordinates[0],coordinates[1]);
+        spawnNew = false;
+        activated = false;
+        effectApplied = false;
+        hide = false;
+    }
+
     public float[] determinePos(float worldWidth,float worldHeight){
         return new float[]{(float) ((Math.random() * ((worldWidth - 60) - 60)) + 60), (float) ((Math.random() * ((worldHeight - 60) - 60)) + 60)};
     }

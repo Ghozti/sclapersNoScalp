@@ -88,8 +88,18 @@ public class Screen implements com.badlogic.gdx.Screen {
 
     public void updatePowerUp(float delta){
         if(currentPowerUp.spawnNew){
-            currentPowerUp = null;
-            currentPowerUp = new SpeedBoost(100,100);
+            switch ((int) ((Math.random() * (3 - 1) + 1))){
+                case 1:
+                    currentPowerUp = powerUps.get(0);
+                    break;
+                case 2:
+                    currentPowerUp = powerUps.get(1);
+                    break;
+                case 3:
+                    currentPowerUp = powerUps.get(2);
+                    break;
+            }
+            currentPowerUp.reset();
         }
         currentPowerUp.detectCollision(scalper,player);
         currentPowerUp.startEffectTimer(delta,scalper,player);
@@ -150,8 +160,8 @@ public class Screen implements com.badlogic.gdx.Screen {
         Gdx.gl.glClearColor(.128f,.128f,.128f,.1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        createCards();
         updatePowerUp(delta);
+        createCards();
 
         batch.begin();
 
