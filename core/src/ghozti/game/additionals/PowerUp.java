@@ -39,6 +39,7 @@ public abstract class PowerUp {
     }
 
     public boolean isTouched(Player player){
+        if(player.getBoundingRect().overlaps(boundingRect)) isActive = true;
         return player.getBoundingRect().overlaps(boundingRect);
     }
 
@@ -47,17 +48,21 @@ public abstract class PowerUp {
         sound.play(1.0f);
     }
 
-    public void updatePowerUp(float delta){
-        System.out.println(counter);
-        System.out.println(isActive);
-
-        counter += delta;
-        if (counter > 5) {
-            counter = 0;
+    public void startTimer(float delta,Scalper scalper, Player player){
+        if(isActive) {
+            counter += delta;
+            if (counter > 5.0) {
+                counter = 0;
+                isActive = false;
+                reverseEffect(scalper,player);
+                System.out.println("all good");
+            }
         }
     }
 
     public abstract void applyEffect(Scalper scalper, Player player);
+
+    public abstract void reverseEffect(Scalper scalper, Player player);
 
     public abstract void draw(Batch batch);
 }

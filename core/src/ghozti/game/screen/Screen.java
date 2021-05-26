@@ -84,9 +84,10 @@ public class Screen implements com.badlogic.gdx.Screen {
     }
 
     public void updatePowerUp(float delta){
+        currentPowerUp.startTimer(delta,scalper,player);
         if(currentPowerUp.isTouched(player)){
             currentPowerUp.applyEffect(scalper,player);
-            currentPowerUp = powerUps.get((int) ((Math.random() * (powerUps.size() - 0)) + 0));
+            //currentPowerUp = powerUps.get((int) ((Math.random() * (powerUps.size() - 0)) + 0));
             currentPowerUp.setNewCoordinates();
         }
     }
@@ -139,11 +140,9 @@ public class Screen implements com.badlogic.gdx.Screen {
 
     }
 
-    public static float delta;
-
     @Override
     public void render(float delta) {
-        Screen.delta = delta;
+
         //System.out.println(Gdx.graphics.getFramesPerSecond());
         Gdx.gl.glClearColor(.128f,.128f,.128f,.1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

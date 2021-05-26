@@ -18,6 +18,11 @@ public class SpeedBoost extends PowerUp {
     }
 
     @Override
+    public void reverseEffect(Scalper scalper, Player player) {
+        player.setSpeed(355);
+    }
+
+    @Override
     public void draw(Batch batch) {
         batch.draw(texture, getX(), getY(), getWidth(), getHeight());
     }

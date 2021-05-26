@@ -18,6 +18,11 @@ public class ScalperSlower extends PowerUp{
     }
 
     @Override
+    public void reverseEffect(Scalper scalper, Player player) {
+        scalper.setSpeed(375);
+    }
+
+    @Override
     public void draw(Batch batch) {
         batch.draw(texture, getX(), getY(), getWidth(), getHeight());
     }
