@@ -1,0 +1,27 @@
+
+boosters.png
+size: 8192,8192
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+marketCrash
+  rotate: false
+  xy: 0, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+slowDownScalper
+  rotate: false
+  xy: 32, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+speedBoost
+  rotate: false
+  xy: 0, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

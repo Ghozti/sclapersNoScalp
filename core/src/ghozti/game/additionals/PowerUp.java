@@ -16,8 +16,10 @@ public abstract class PowerUp {
     TextureRegion texture;
     Rectangle boundingRect;
 
-    private float counter;
-    private float counter2;
+    boolean spawnNew;
+    boolean activated;
+    boolean effectApplied;
+    boolean drawReady;
 
     public PowerUp(float width, float height){
         float[] coordinates = determinePos(Screen.WORLD_WIDTH,Screen.WORLD_HEIGHT);
@@ -34,11 +36,12 @@ public abstract class PowerUp {
         return new float[]{(float) ((Math.random() * ((worldWidth - 60) - 60)) + 60), (float) ((Math.random() * ((worldHeight - 60) - 60)) + 60)};
     }
 
-    public boolean isTouched(Player player){
+    public void detectCollision(Scalper sclaper,Player player){
         if(player.getBoundingRect().overlaps(boundingRect)) {
-
+            applyEffect(sclaper,player);
+            effectApplied = true;
+            activated  = true;
         }
-        return player.getBoundingRect().overlaps(boundingRect);
     }
 
     protected void playSound(){
@@ -46,18 +49,27 @@ public abstract class PowerUp {
         sound.play(1.0f);
     }
 
+    private float counter2;
+
     public void startSpawnerTimer(float delta){
-        counter2 += delta;
-        if (counter2 > 10.0) {
-            counter2 = 0;
+        if(activated) {
+            counter2 += delta;
+            if (counter2 > 10.0) {
+                spawnNew = true;
+                counter2 = 0;
+            }
         }
     }
 
-    public void startTimer(float delta,Scalper scalper, Player player){
-        counter += delta;
-        if (counter > 5.0) {
-            counter = 0;
-            reverseEffect(scalper,player);
+    private float counter;
+
+    public void startEffectTimer(float delta,Scalper scalper, Player player){
+        if(activated) {
+            counter += delta;
+            if (counter > 5.0) {
+                counter = 0;
+                reverseEffect(scalper, player);
+            }
         }
     }
 
