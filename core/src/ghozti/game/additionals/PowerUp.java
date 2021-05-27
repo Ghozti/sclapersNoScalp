@@ -66,7 +66,6 @@ public abstract class PowerUp {
     private float counter2;
 
     public void startSpawnerTimer(float delta){
-        System.out.println(counter2 + "***");
         if(activated) {
             counter2 += delta;
             if (counter2 > 10.0) {
@@ -79,7 +78,6 @@ public abstract class PowerUp {
     private float counter;
 
     public void startEffectTimer(float delta,Scalper scalper, Player player){
-        System.out.println(counter + "**");
         if(activated) {
             counter += delta;
             if (counter > 5.0) {

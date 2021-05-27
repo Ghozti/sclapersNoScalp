@@ -14,7 +14,6 @@ public class SpeedBoost extends PowerUp {
     @Override
     public void applyEffect(Scalper scalper, Player player) {
         //if (!effectApplied) {
-        System.out.println("****");
             playSound();
             player.setSpeed(500);
         //}

@@ -53,7 +53,7 @@ public class Player {
         }
     }
 
-    private void move(float delta) {
+    public void move(float delta) {
         float xchange,ychange;
 
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
@@ -83,7 +83,6 @@ public class Player {
     }
 
     public void draw(Batch batch, float delta){
-        move(delta);
         batch.draw(playerTexture,boundingRect.x,boundingRect.y,boundingRect.width,boundingRect.height);
         //System.out.println("x" + "[" + boundingRect.x + "]");
         //System.out.println("y" + "[" + boundingRect.y + "]");

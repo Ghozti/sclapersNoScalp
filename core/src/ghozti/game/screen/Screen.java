@@ -160,6 +160,7 @@ public class Screen implements com.badlogic.gdx.Screen {
         Gdx.gl.glClearColor(.128f,.128f,.128f,.1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        player.move(delta);
         updatePowerUp(delta);
         createCards();
 
