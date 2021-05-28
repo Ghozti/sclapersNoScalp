@@ -41,7 +41,7 @@ public class Player {
         textures[8] = atlas.findRegion("neutral");
 
         textures[9] = atlas.findRegion("upwalk0");
-        textures[10] = atlas.findRegion("upwalk2");
+        textures[10] = atlas.findRegion("upwalk1");
         textures[11] = atlas.findRegion("upwalk2");
     }
 
@@ -73,28 +73,79 @@ public class Player {
         }
     }
 
+    int currentTextureRight = 0, currentTextureLeft = 0;
+    int currentTextureUp = 0, currentTextureDown = 0;
+
     public void move(float delta) {
         float xchange,ychange;
 
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+
+            if (currentTextureRight >= 100){
+                currentTextureRight = 0;
+            }
+
+            if(currentTextureRight <= 50){
+                currentTexture = textures[3];
+            }else if(currentTextureRight >= 51){
+                currentTexture = textures[4];
+            }
+            currentTextureRight++;
+
             xchange = boundingRect.x+speed * delta;
             ychange = boundingRect.y;
             boundingRect.setPosition(xchange,ychange);
             verifyPos(xchange,ychange);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+
+            if (currentTextureLeft >= 100){
+                currentTextureLeft = 0;
+            }
+
+            if(currentTextureLeft <= 50){
+                currentTexture = textures[6];
+            }else if(currentTextureLeft >= 51){
+                currentTexture = textures[7];
+            }
+            currentTextureLeft++;
+
             xchange = boundingRect.x-speed * delta;
             ychange = boundingRect.y;
             boundingRect.setPosition(xchange,ychange);
             verifyPos(xchange,ychange);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+
+            if (currentTextureUp >= 100){
+                currentTextureUp = 0;
+            }
+
+            if(currentTextureUp <= 50){
+                currentTexture = textures[10];
+            }else if(currentTextureUp >= 51){
+                currentTexture = textures[11];
+            }
+            currentTextureUp++;
+
             ychange = boundingRect.y+speed * delta;
             xchange = boundingRect.x;
             boundingRect.setPosition(xchange,ychange);
             verifyPos(xchange,ychange);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+
+            if (currentTextureDown >= 100){
+                currentTextureDown = 0;
+            }
+
+            if(currentTextureDown <= 50){
+                currentTexture = textures[0];
+            }else if(currentTextureDown >= 51){
+                currentTexture = textures[1];
+            }
+            currentTextureDown++;
+
             ychange = boundingRect.y-speed * delta;
             xchange = boundingRect.x;
             boundingRect.setPosition(xchange,ychange);
