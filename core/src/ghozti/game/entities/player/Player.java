@@ -3,6 +3,7 @@ package ghozti.game.entities.player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -10,19 +11,38 @@ public class Player {
 
     //attributes
     float speed;
-    //texture
-    TextureRegion playerTexture;
-    TextureRegion hearts;
+    //textures
+    TextureAtlas atlas;
+    TextureRegion[] textures = new TextureRegion[12];
+    TextureRegion currentTexture;
     //boundingRect
     com.badlogic.gdx.math.Rectangle boundingRect;
     //HUD
     float score;
 
     //constructor
-    public Player(TextureRegion playerTexture,float speed, float width, float height, float x, float y){
-        this.playerTexture = playerTexture;
+    public Player(float speed, float width, float height, float x, float y){
+        atlas = new TextureAtlas("spacedude.atlas");
+        currentTexture = atlas.findRegion("neutral");
         this.speed = speed;
         boundingRect = new Rectangle(x,y,width,height);
+
+        textures[0] = atlas.findRegion("frontwalk1");
+        textures[1] = atlas.findRegion("frontwalk2");
+
+        textures[2] = atlas.findRegion("rightwalk0");
+        textures[3] = atlas.findRegion("rightwalk1");
+        textures[4] = atlas.findRegion("rightwalk2");
+
+        textures[5] = atlas.findRegion("leftwalk0");
+        textures[6] = atlas.findRegion("leftwalk1");
+        textures[7] = atlas.findRegion("leftwalk2");
+
+        textures[8] = atlas.findRegion("neutral");
+
+        textures[9] = atlas.findRegion("upwalk0");
+        textures[10] = atlas.findRegion("upwalk2");
+        textures[11] = atlas.findRegion("upwalk2");
     }
 
     //getters
@@ -83,7 +103,7 @@ public class Player {
     }
 
     public void draw(Batch batch, float delta){
-        batch.draw(playerTexture,boundingRect.x,boundingRect.y,boundingRect.width,boundingRect.height);
+        batch.draw(currentTexture,boundingRect.x,boundingRect.y,boundingRect.width,boundingRect.height);
         //System.out.println("x" + "[" + boundingRect.x + "]");
         //System.out.println("y" + "[" + boundingRect.y + "]");
     }

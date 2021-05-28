@@ -55,7 +55,7 @@ public class Screen implements com.badlogic.gdx.Screen {
         viewport = new StretchViewport(WORLD_WIDTH,WORLD_HEIGHT,camera);
 
         //sets texture atlas and batch
-        atlas = new TextureAtlas("unnamed.atlas");
+        atlas = new TextureAtlas("general.atlas");
         batch = new SpriteBatch();
 
         //initializes the game objects
@@ -67,7 +67,7 @@ public class Screen implements com.badlogic.gdx.Screen {
         powerUps.add(new ScalperSlower(100,100));
 
         currentPowerUp = powerUps.get((int) ((Math.random() * (powerUps.size() - 0)) + 0));
-        player = new Player(atlas.findRegion("amogus"),375,100,100,1000,1000);
+        player = new Player(375,100,100,1000,1000);
         scalper = new Scalper(375,100,100,10,10);
         hud = new Hud();
 
