@@ -22,11 +22,16 @@ public class Player {
 
     //constructor
     public Player(float speed, float width, float height, float x, float y){
+        //sets the texture atlas
         atlas = new TextureAtlas("spacedude.atlas");
+        //sets the starting texture.
         currentTexture = atlas.findRegion("neutral");
+        //sets the speed
         this.speed = speed;
+        //sets the bounding rect used for collision detection. Notice that there is no float field for x,y or width or height. This is because it's all stored inside the rectangle.
         boundingRect = new Rectangle(x,y,width,height);
 
+        //puts all of the textures into the array
         textures[0] = atlas.findRegion("frontwalk1");
         textures[1] = atlas.findRegion("frontwalk2");
 
@@ -73,6 +78,7 @@ public class Player {
         }
     }
 
+    //fields used for animation.
     int currentTextureRight = 0, currentTextureLeft = 0;
     int currentTextureUp = 0, currentTextureDown = 0;
 
@@ -80,6 +86,13 @@ public class Player {
         float xchange,ychange;
 
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+            //***USE THIS FOR ALL OF THE FOLLOWING BLOCKS***
+            /*
+            * the int declared above must be a certain value, this will determine the current texture used while walking. This will make an animation effect.
+            * the rest of the code will determine the current position based on player input. It is possible to press multiple keys at a time.
+            * once the input is processed it will update the rectangle position.
+            * then it will call the verify position method in order to assert the current coordinates are valid. (see more in that method)
+             */
 
             if (currentTextureRight >= 100){
                 currentTextureRight = 0;
@@ -154,6 +167,7 @@ public class Player {
     }
 
     public void draw(Batch batch, float delta){
+        //this will draw the player into te screen.
         batch.draw(currentTexture,boundingRect.x,boundingRect.y,boundingRect.width,boundingRect.height);
         //System.out.println("x" + "[" + boundingRect.x + "]");
         //System.out.println("y" + "[" + boundingRect.y + "]");
