@@ -12,7 +12,10 @@ import java.util.Locale;
 
 public class Hud {
 
-    float score,time;
+    /**
+     * the HUD (heads up display) is what tells the player their current score and the scalper's score.
+     */
+
     BitmapFont font;
     float verticalMargin,leftx,rightx,centerx,row1Y,row2Y,sectionWidth;
 
@@ -21,7 +24,7 @@ public class Hud {
         FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("NugoSansLight-9YzoK.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
 
-        //sets font stuff
+        //sets font attributes
         fontParameter.size = 172;
         fontParameter.borderWidth = 3.6f;
         fontParameter.color = new Color(1,1,1,.3f);
@@ -43,10 +46,14 @@ public class Hud {
     }
 
     public void render(Batch batch, float pscore,float sscore){
+        //draws the your score text
         font.draw(batch,"Your score",leftx,row1Y,sectionWidth, Align.left,false);
+        //draws the actual player score
         font.draw(batch, String.format(Locale.getDefault(),"%06d",(int)pscore),leftx,row2Y,sectionWidth, Align.left,false);
 
+        //draws the scalper score text
         font.draw(batch,"Scalper score",leftx,row1Y-200,sectionWidth, Align.left,false);
+        //draws the actual scalper score
         font.draw(batch, String.format(Locale.getDefault(),"%06d",(int)sscore),leftx,row2Y-200,sectionWidth, Align.left,false);
     }
 }
