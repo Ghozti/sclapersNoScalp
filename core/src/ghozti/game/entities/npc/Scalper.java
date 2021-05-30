@@ -22,10 +22,14 @@ public class Scalper {
     float score;
 
     public Scalper(float speed,float width, float height,float x, float y){
+        //sets the speed
         this.speed = speed;
+        //sets the initial texture
         currentTexture = atlas.findRegion("neutral");
+        //creates the bounding rect for collision and positioning.
         boundingRect = new Rectangle(x,y,width,height);
 
+        //puts all of the textures into the array.
         textures[0] = atlas.findRegion("forwardwalk1");
         textures[1] = atlas.findRegion("forwardwalk2");
 
@@ -41,6 +45,7 @@ public class Scalper {
         textures[8] = atlas.findRegion("rightwalk2");
     }
 
+    //getters and setters
     public Rectangle getBoundingRect(){return boundingRect;}
     public float getSpeed(){return speed;}
     public void setSpeed(float speed){this.speed = speed;}
@@ -51,10 +56,12 @@ public class Scalper {
     public void setScore(float score){this.score = score;}
     public float getScore() {return score; }
 
+    //used for animation.
     int currentTextureRight = 0, currentTextureLeft = 0;
     int currentTextureUp = 0, currentTextureDown = 0;
 
     public void move(float delta, GraphicsCard card){
+        //refer to the player move method for this.
 
         if(card != null){
             if(card.getX() > getX()+25){//<-- this number is used as a "stabilizer" which basically allows the scalper to move smoothly without "jumping" when moving
@@ -119,6 +126,7 @@ public class Scalper {
     }
 
     public void draw(Batch batch,float delta,GraphicsCard card){
+        //draws the scalper.
         move(delta,card);
         batch.draw(currentTexture,boundingRect.x,boundingRect.y,boundingRect.width,boundingRect.height);
     }
