@@ -8,12 +8,14 @@ public class ScalperSlower extends PowerUp{
 
     public ScalperSlower(float width, float height) {
         super(width, height);
+        //sets the texture
         texture = atlas.findRegion("slowDownScalper");
     }
 
     @Override
     public void applyEffect(Scalper scalper, Player player) {
         //if (!effectApplied) {
+        //will play the sound and apply this effects effect
             playSound();
             scalper.setSpeed(scalper.getSpeed() / 1.8f);
         //}
