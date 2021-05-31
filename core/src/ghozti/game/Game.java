@@ -1,4 +1,6 @@
-package ghozti.game.screen;
+package ghozti.game;
+
+import ghozti.game.screen.Screen;
 
 public class Game extends com.badlogic.gdx.Game {
 
