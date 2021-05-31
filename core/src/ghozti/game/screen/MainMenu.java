@@ -8,12 +8,12 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class MainMenu implements Screen {
-
+    //textures
+    Texture startBtn;
     Texture background;
     //screen
     Camera camera;
@@ -32,6 +32,7 @@ public class MainMenu implements Screen {
         music.play();
 
         background = new Texture("menubg.jpg");
+        startBtn =  new Texture("start.png");
 
         //sets camera, viewport
         camera = new OrthographicCamera();
@@ -54,6 +55,7 @@ public class MainMenu implements Screen {
 
         batch.begin();
         batch.draw(background,0,0,WORLD_WIDTH,WORLD_HEIGHT);
+        batch.draw(startBtn,710,50,500,500);
         batch.end();
     }
 
