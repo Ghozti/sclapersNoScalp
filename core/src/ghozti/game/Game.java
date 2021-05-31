@@ -1,12 +1,13 @@
 package ghozti.game;
 
+import ghozti.game.screen.MainMenu;
 import ghozti.game.screen.Screen;
 
 public class Game extends com.badlogic.gdx.Game {
 
 	@Override
 	public void create() {
-		setScreen(new Screen());
+		setScreen(new MainMenu());
 	}
 
 	@Override

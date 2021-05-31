@@ -74,12 +74,10 @@ public class Screen implements com.badlogic.gdx.Screen {
         //plays the background music
         //2019-01-02_-_8_Bit_Menu_-_David_Renda_-_FesliyanStudios.com.wav
 
-        Music music = Gdx.audio.newMusic(Gdx.files.internal("2019-01-02_-_8_Bit_Menu_-_David_Renda_-_FesliyanStudios.com.wav"));
+        Music music = Gdx.audio.newMusic(Gdx.files.internal("2020-03-22_-_A_Bit_Of_Hope_-_David_Fesliyan.wav"));
         music.setVolume(0.5f);
         music.setLooping(true);
         music.play();
-
-        //TODO **************COMMENT EVERYWHERE*************
     }
 
     public void renderPowerUp(Batch batch){
