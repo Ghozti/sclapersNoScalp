@@ -13,7 +13,11 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class MainMenu implements Screen {
     //textures
+    //buttons
     Texture startBtn;
+    Texture startBtnActive;
+    Texture currentButton;
+    //background
     Texture background;
     //screen
     Camera camera;
@@ -32,7 +36,9 @@ public class MainMenu implements Screen {
         music.play();
 
         background = new Texture("menubg.jpg");
+
         startBtn =  new Texture("start.png");
+        startBtnActive = new Texture("start2.png");
 
         //sets camera, viewport
         camera = new OrthographicCamera();
@@ -42,6 +48,25 @@ public class MainMenu implements Screen {
         batch = new SpriteBatch();
     }
 
+    public void update(){
+        System.out.println(Gdx.input.getX());
+        System.out.println(Gdx.input.getY() + "**");
+        boolean check1 = false,check2 = false;
+
+        if (Gdx.input.getX() <= 1162 && Gdx.input.getX() >= 755) {
+            check1 = true;
+        }
+        if (Gdx.input.getY() <= 823 && Gdx.input.getY() >= 736){
+           check2 = true;
+        }
+
+        if(check1 && check2) {
+            currentButton = startBtnActive;
+        } else {
+            currentButton = startBtn;
+        }
+    }
+
     @Override
     public void show() {
 
@@ -49,13 +74,12 @@ public class MainMenu implements Screen {
 
     @Override
     public void render(float delta) {
-
         Gdx.gl.glClearColor(.128f,.128f,.128f,.1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+        update();
         batch.begin();
         batch.draw(background,0,0,WORLD_WIDTH,WORLD_HEIGHT);
-        batch.draw(startBtn,710,50,500,500);
+        batch.draw(currentButton,710,50,500,500);
         batch.end();
     }
 
