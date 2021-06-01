@@ -54,6 +54,7 @@ public class Screen implements com.badlogic.gdx.Screen {
 
     //music
     Music music;
+    Music pauseMusic;
 
     public Screen(){
         //sets camera, viewport
@@ -81,19 +82,24 @@ public class Screen implements com.badlogic.gdx.Screen {
         //2019-01-02_-_8_Bit_Menu_-_David_Renda_-_FesliyanStudios.com.wav
 
         music = Gdx.audio.newMusic(Gdx.files.internal("2020-03-22_-_A_Bit_Of_Hope_-_David_Fesliyan.wav"));
-        music.setVolume(0.3f);
+        music.setVolume(0.2f);
         music.setLooping(true);
         music.play();
+
+        pauseMusic = Gdx.audio.newMusic(Gdx.files.internal("mixkit-quick-jump-arcade-game-239.wav"));
+        pauseMusic.setVolume(.5f);
     }
 
     public void updateGame(){
         if (Gdx.input.isKeyPressed(Input.Keys.P)){
             music.pause();
+            pauseMusic.play();
             paused = true;
             Gdx.graphics.setContinuousRendering(false);
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.R)){
+        if (Gdx.input.isKeyPressed(Input.Keys.R) && paused){
             music.play();
+            pauseMusic.play();
             paused = false;
             Gdx.graphics.setContinuousRendering(true);
         }
