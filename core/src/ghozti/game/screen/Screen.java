@@ -89,10 +89,12 @@ public class Screen implements com.badlogic.gdx.Screen {
         if (Gdx.input.isKeyPressed(Input.Keys.P)){
             music.pause();
             paused = true;
+            Gdx.graphics.setContinuousRendering(false);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.R)){
             music.play();
             paused = false;
+            Gdx.graphics.setContinuousRendering(true);
         }
     }
 
