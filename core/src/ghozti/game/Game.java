@@ -14,7 +14,6 @@ public class Game extends com.badlogic.gdx.Game {
 
 	@Override
 	public void render() {
-		System.out.println(MainMenu.startGame);
 		if (MainMenu.startGame && !gameStarted) {
 			gameStarted = true;
 			setScreen(new Screen());

@@ -65,7 +65,7 @@ public class MainMenu implements Screen {
 
     public void update(){
         boolean check1 = false,check2 = false;
-        boolean musicCheck1,musicCheck2;
+        boolean musicCheck1 = false,musicCheck2 = false;
 
         if (Gdx.input.getX() <= 1162 && Gdx.input.getX() >= 755) {
             check1 = true;
@@ -82,6 +82,25 @@ public class MainMenu implements Screen {
             currentButton = startBtnActive;
         } else {
             currentButton = startBtn;
+        }
+
+        System.out.println(Gdx.input.getX() + " " + Gdx.input.getY());
+
+        if (Gdx.input.getX() >= 1800 && Gdx.input.getX() <= 1880) {
+            musicCheck1 = true;
+        }
+        if (Gdx.input.getY() >= 935 && Gdx.input.getY() <= 1006){
+            musicCheck2 = true;
+        }
+
+        if(musicCheck1 && musicCheck2) {
+            if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+                music.stop();
+                currentMusic = musicOffT;
+            } else if(Gdx.input.isButtonPressed(Input.Buttons.RIGHT)){
+                music.play();
+                currentMusic = musicOnT;
+            }
         }
     }
 
