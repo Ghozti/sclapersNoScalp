@@ -1,6 +1,7 @@
 package ghozti.game.screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Camera;
@@ -10,8 +11,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import jdk.internal.vm.compiler.libgraal.LibGraal;
 
 public class MainMenu implements Screen {
+
+    public static boolean startGame = false;
+
     //textures
     //buttons
     Texture startBtn;
@@ -28,9 +33,12 @@ public class MainMenu implements Screen {
     public static final float WORLD_HEIGHT = 1080;
     public static final float WORLD_WIDTH = 1920;
 
+    //music
+    Music music;
+
     public MainMenu() {
 
-        Music music = Gdx.audio.newMusic(Gdx.files.internal("2019-01-02_-_8_Bit_Menu_-_David_Renda_-_FesliyanStudios.com.wav"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("2019-01-02_-_8_Bit_Menu_-_David_Renda_-_FesliyanStudios.com.wav"));
         music.setVolume(0.5f);
         music.setLooping(true);
         music.play();
@@ -49,8 +57,6 @@ public class MainMenu implements Screen {
     }
 
     public void update(){
-        System.out.println(Gdx.input.getX());
-        System.out.println(Gdx.input.getY() + "**");
         boolean check1 = false,check2 = false;
 
         if (Gdx.input.getX() <= 1162 && Gdx.input.getX() >= 755) {
@@ -61,6 +67,10 @@ public class MainMenu implements Screen {
         }
 
         if(check1 && check2) {
+            if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+                startGame = true;
+                music.stop();
+            }
             currentButton = startBtnActive;
         } else {
             currentButton = startBtn;
@@ -74,13 +84,15 @@ public class MainMenu implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(.128f,.128f,.128f,.1f);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        update();
-        batch.begin();
-        batch.draw(background,0,0,WORLD_WIDTH,WORLD_HEIGHT);
-        batch.draw(currentButton,710,50,500,500);
-        batch.end();
+        if (!startGame) {
+            Gdx.gl.glClearColor(.128f, .128f, .128f, .1f);
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            update();
+            batch.begin();
+            batch.draw(background, 0, 0, WORLD_WIDTH, WORLD_HEIGHT);
+            batch.draw(currentButton, 710, 50, 500, 500);
+            batch.end();
+        }
     }
 
     @Override

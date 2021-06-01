@@ -5,14 +5,20 @@ import ghozti.game.screen.Screen;
 
 public class Game extends com.badlogic.gdx.Game {
 
+	boolean gameStarted = false;
+
 	@Override
 	public void create() {
 		setScreen(new MainMenu());
-		//setScreen(new Screen());
 	}
 
 	@Override
 	public void render() {
+		System.out.println(MainMenu.startGame);
+		if (MainMenu.startGame && !gameStarted) {
+			gameStarted = true;
+			setScreen(new Screen());
+		}
 		super.render();
 	}
 
