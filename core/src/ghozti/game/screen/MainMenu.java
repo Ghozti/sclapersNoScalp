@@ -22,6 +22,7 @@ public class MainMenu implements Screen {
     Texture startBtn;
     Texture startBtnActive;
     Texture currentButton;
+    Texture musicOnT, musicOffT,currentMusic;
     //background
     Texture background;
     //screen
@@ -35,6 +36,7 @@ public class MainMenu implements Screen {
 
     //music
     Music music;
+    boolean musicOn;
 
     public MainMenu() {
 
@@ -48,6 +50,11 @@ public class MainMenu implements Screen {
         startBtn =  new Texture("start.png");
         startBtnActive = new Texture("start2.png");
 
+        musicOnT = new Texture("musicOn.png");
+        musicOffT = new Texture("musicOff.png");
+
+        currentMusic = musicOnT;
+
         //sets camera, viewport
         camera = new OrthographicCamera();
         viewport = new StretchViewport(WORLD_WIDTH,WORLD_HEIGHT,camera);
@@ -58,6 +65,7 @@ public class MainMenu implements Screen {
 
     public void update(){
         boolean check1 = false,check2 = false;
+        boolean musicCheck1,musicCheck2;
 
         if (Gdx.input.getX() <= 1162 && Gdx.input.getX() >= 755) {
             check1 = true;
@@ -91,6 +99,7 @@ public class MainMenu implements Screen {
             batch.begin();
             batch.draw(background, 0, 0, WORLD_WIDTH, WORLD_HEIGHT);
             batch.draw(currentButton, 710, 50, 500, 500);
+            batch.draw(currentMusic, 1800, 50, 100, 100);
             batch.end();
         }
     }
