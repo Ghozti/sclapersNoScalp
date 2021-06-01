@@ -33,6 +33,7 @@ public class Screen implements com.badlogic.gdx.Screen {
     TextureAtlas atlas;
     SpriteBatch batch;
     Texture background = new Texture("22.jpg");
+    Texture pausedT = new Texture("paused.png");
 
     //World
     public static final float WORLD_HEIGHT = 1080;
@@ -80,7 +81,7 @@ public class Screen implements com.badlogic.gdx.Screen {
         //2019-01-02_-_8_Bit_Menu_-_David_Renda_-_FesliyanStudios.com.wav
 
         music = Gdx.audio.newMusic(Gdx.files.internal("2020-03-22_-_A_Bit_Of_Hope_-_David_Fesliyan.wav"));
-        music.setVolume(0.5f);
+        music.setVolume(0.3f);
         music.setLooping(true);
         music.play();
     }
@@ -190,9 +191,13 @@ public class Screen implements com.badlogic.gdx.Screen {
 
         renderCards(batch);
         renderPowerUp(batch);
+
         player.draw(batch,delta);
         scalper.draw(batch,delta,graphicsCards.get((int) currentInd));
+
         hud.render(batch,player.getScore(),scalper.getScore());
+
+        if(paused) batch.draw(pausedT,600,100,800,800);
 
         batch.end();
     }
