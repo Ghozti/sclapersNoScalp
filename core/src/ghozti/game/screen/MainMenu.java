@@ -49,7 +49,7 @@ public class MainMenu implements Screen {
         pauseMusic = Gdx.audio.newMusic(Gdx.files.internal("mixkit-quick-jump-arcade-game-239.wav"));
         pauseMusic.setVolume(.5f);
 
-        background = new Texture("menubg.jpg");
+        background = new Texture("menubg.png");
 
         startBtn =  new Texture("start.png");
         startBtnActive = new Texture("start2.png");
