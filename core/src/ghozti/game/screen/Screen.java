@@ -1,6 +1,7 @@
 package ghozti.game.screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Camera;
@@ -49,6 +50,9 @@ public class Screen implements com.badlogic.gdx.Screen {
     ArrayList<PowerUp> powerUps = new ArrayList<>();
     PowerUp currentPowerUp;
 
+    //bools
+    boolean paused = false;
+
     public Screen(){
         //sets camera, viewport
         camera = new OrthographicCamera();
@@ -78,6 +82,15 @@ public class Screen implements com.badlogic.gdx.Screen {
         music.setVolume(0.5f);
         music.setLooping(true);
         music.play();
+    }
+
+    public void updateGame(){
+        if (Gdx.input.isKeyPressed(Input.Keys.P)){
+            paused = true;
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.R)){
+            paused = false;
+        }
     }
 
     public void renderPowerUp(Batch batch){
@@ -154,10 +167,14 @@ public class Screen implements com.badlogic.gdx.Screen {
 
     @Override
     public void render(float delta) {
+        if (paused){
+            delta = 0;
+        }
         //System.out.println(Gdx.graphics.getFramesPerSecond());
         Gdx.gl.glClearColor(.128f,.128f,.128f,.1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        updateGame();
         player.move(delta);
         updatePowerUp(delta);
         createCards();

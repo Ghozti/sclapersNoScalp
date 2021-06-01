@@ -84,8 +84,6 @@ public class MainMenu implements Screen {
             currentButton = startBtn;
         }
 
-        System.out.println(Gdx.input.getX() + " " + Gdx.input.getY());
-
         if (Gdx.input.getX() >= 1800 && Gdx.input.getX() <= 1880) {
             musicCheck1 = true;
         }
@@ -95,10 +93,10 @@ public class MainMenu implements Screen {
 
         if(musicCheck1 && musicCheck2) {
             if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
-                music.stop();
+                music.setVolume(0);
                 currentMusic = musicOffT;
             } else if(Gdx.input.isButtonPressed(Input.Buttons.RIGHT)){
-                music.play();
+                music.setVolume(.5f);
                 currentMusic = musicOnT;
             }
         }
