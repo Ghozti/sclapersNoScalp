@@ -36,7 +36,8 @@ public class MainMenu implements Screen {
 
     //music
     Music music;
-    boolean musicOn;
+    Music pauseMusic;
+    boolean musicOn = true;
 
     public MainMenu() {
 
@@ -44,6 +45,9 @@ public class MainMenu implements Screen {
         music.setVolume(0.5f);
         music.setLooping(true);
         music.play();
+
+        pauseMusic = Gdx.audio.newMusic(Gdx.files.internal("mixkit-quick-jump-arcade-game-239.wav"));
+        pauseMusic.setVolume(.5f);
 
         background = new Texture("menubg.jpg");
 
@@ -76,8 +80,9 @@ public class MainMenu implements Screen {
 
         if(check1 && check2) {
             if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
-                startGame = true;
                 music.stop();
+                pauseMusic.play();
+                startGame = true;
             }
             currentButton = startBtnActive;
         } else {
@@ -92,11 +97,16 @@ public class MainMenu implements Screen {
         }
 
         if(musicCheck1 && musicCheck2) {
-            if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+            if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && musicOn){
+                musicOn = false;
                 music.setVolume(0);
+                pauseMusic.play();
                 currentMusic = musicOffT;
-            } else if(Gdx.input.isButtonPressed(Input.Buttons.RIGHT)){
+            }
+            if(Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && !musicOn){
+                musicOn = true;
                 music.setVolume(.5f);
+                pauseMusic.play();
                 currentMusic = musicOnT;
             }
         }
