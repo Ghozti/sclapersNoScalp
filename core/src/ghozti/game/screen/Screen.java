@@ -75,7 +75,7 @@ public class Screen implements com.badlogic.gdx.Screen {
 
         currentPowerUp = powerUps.get((int) ((Math.random() * (powerUps.size() - 0)) + 0));
         player = new Player(375,100,100,1000,1000);
-        scalper = new Scalper(375,100,100,10,10);
+        scalper = new Scalper(400,100,100,10,10);
         hud = new Hud();
 
         //plays the background music
@@ -203,7 +203,7 @@ public class Screen implements com.badlogic.gdx.Screen {
 
         hud.render(batch,player.getScore(),scalper.getScore());
 
-        if(paused) batch.draw(pausedT,600,100,800,800);
+        if(paused) batch.draw(pausedT,590,100,800,800);
 
         batch.end();
     }
