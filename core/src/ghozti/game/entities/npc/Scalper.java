@@ -20,6 +20,7 @@ public class Scalper {
     com.badlogic.gdx.math.Rectangle boundingRect;
     //hud
     float score;
+    float scoringNumber = 1;
 
     public Scalper(float speed,float width, float height,float x, float y){
         //sets the speed
@@ -49,12 +50,14 @@ public class Scalper {
     public Rectangle getBoundingRect(){return boundingRect;}
     public float getSpeed(){return speed;}
     public void setSpeed(float speed){this.speed = speed;}
+    public void setScoringNumber(float num){scoringNumber = num;}
     public float getHeight(){return boundingRect.height;}
     public float getWidth() {return boundingRect.width;}
     public float getX() {return boundingRect.x;}
     public float getY(){return boundingRect.y;}
     public void setScore(float score){this.score = score;}
     public float getScore() {return score; }
+    public float getScoringNumber(){return scoringNumber;}
 
     //used for animation.
     int currentTextureRight = 0, currentTextureLeft = 0;
