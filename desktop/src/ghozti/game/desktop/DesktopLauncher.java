@@ -16,4 +16,6 @@ public class DesktopLauncher {
 		config.title = "Silicon Crisis";
 		new LwjglApplication(new Game(), config);
 	}
+
+	//TODO optimze the game for higher resolutions, refactor, comment and replace textures with texture regions in Screen.java and MainMenu.java
 }
