@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import jdk.internal.vm.compiler.libgraal.LibGraal;
 
 public class MainMenu implements Screen {
 
@@ -23,6 +22,8 @@ public class MainMenu implements Screen {
     Texture startBtnActive;
     Texture currentButton;
     Texture musicOnT, musicOffT,currentMusic;
+    //title
+    Texture title;
     //background
     Texture background;
     //screen
@@ -50,6 +51,9 @@ public class MainMenu implements Screen {
         //sets the sound effects
         pauseMusic = Gdx.audio.newMusic(Gdx.files.internal("mixkit-quick-jump-arcade-game-239.wav"));
         pauseMusic.setVolume(.5f);
+
+        //sets the title
+        title = new Texture("title.png");
 
         //sets the background texture
         background = new Texture("menubg.png");
@@ -141,6 +145,10 @@ public class MainMenu implements Screen {
             update();
             batch.begin();
             batch.draw(background, 0, 0, WORLD_WIDTH, WORLD_HEIGHT);
+
+            //DRAW EVERYTHING ELSE BELOW:
+            batch.draw(title, 430, 150, 1050, 1050);
+            batch.draw(currentMusic, 1800, 50, 100, 100);
             batch.draw(currentButton, 710, 50, 500, 500);
             batch.draw(currentMusic, 1800, 50, 100, 100);
             batch.end();
