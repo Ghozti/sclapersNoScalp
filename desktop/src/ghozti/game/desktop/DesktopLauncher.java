@@ -12,7 +12,8 @@ public class DesktopLauncher {
 		config.foregroundFPS = 144;
 		config.fullscreen = true;
 		config.vSyncEnabled = true;
-		config.resizable = false;
+		config.resizable = true;
+		config.title = "Silicon Crisis";
 		new LwjglApplication(new Game(), config);
 	}
 }

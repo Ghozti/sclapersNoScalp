@@ -24,6 +24,7 @@ public class MainMenu implements Screen {
     Texture currentButton;
     Texture musicOnT, musicOffT,currentMusic;
     Texture credits,creditsActive, currentCredits;
+    Texture goBack1, goBack2, currentGoBack;
     //title
     Texture title;
     //background
@@ -80,6 +81,11 @@ public class MainMenu implements Screen {
         credits = new Texture("credits1.png");
         creditsActive = new Texture("credits2.png");
         currentCredits = credits;
+
+        //sets the go back button in credits
+        goBack1 = new Texture("goBack1.png");
+        goBack2 = new Texture("goBack2.png");
+        currentGoBack = goBack1;
 
         //the current music texture is on by default
         currentMusic = musicOnT;
@@ -179,8 +185,6 @@ public class MainMenu implements Screen {
             }
         }
 
-        //System.out.println(Gdx.input.getX() + "    " + Gdx.input.getY());
-
         boolean creditsCheck1 = false,creditsCheck2 = false;
 
         //same functionality as before except it is for the credits screen
@@ -193,11 +197,32 @@ public class MainMenu implements Screen {
 
         if (creditsCheck1 && creditsCheck2){
             currentCredits = creditsActive;
-            if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+            if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
                 showCredits = true;
+                pauseMusic.play();
             }
         }else {
             currentCredits = credits;
+        }
+
+        boolean gobackCheck1 = false, gobackCheck2 = false;
+
+        //same functionality as before except it is for the credits screen
+        if (Gdx.input.getX() >= 790 && Gdx.input.getX() <= 1107) {
+            gobackCheck1 = true;
+        }
+        if (Gdx.input.getY() >= 901 && Gdx.input.getY() <= 956){
+            gobackCheck2 = true;
+        }
+
+        if (gobackCheck1 && gobackCheck2){
+            currentGoBack = goBack2;
+            if(Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT)){
+                showCredits = false;
+                pauseMusic.play();
+            }
+        }else {
+            currentGoBack = goBack1;
         }
     }
 
@@ -209,7 +234,6 @@ public class MainMenu implements Screen {
     @Override
     public void render(float delta) {
         //once the game starts nothing will be rendered
-
         if (!startGame || showCredits) {
             Gdx.gl.glClearColor(.128f, .128f, .128f, .1f);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -229,6 +253,7 @@ public class MainMenu implements Screen {
         if (showCredits){
           Gdx.gl.glClearColor(0, 0, 0, 0);
           Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+          update();
           batch.begin();
           font.draw(batch,"Programmer:",0,1050,sectionWidth, Align.left,false);
           font2.draw(batch,"Ghozti",0,950,sectionWidth, Align.left,false);
@@ -237,6 +262,7 @@ public class MainMenu implements Screen {
           font.draw(batch,"Music By:",0,650,sectionWidth, Align.left,false);
           font2.draw(batch,"Fesliyan Studios",0,550,sectionWidth, Align.left,false);
           font2.draw(batch,"find them here: https://www.fesliyanstudios.com/",0,500,sectionWidth, Align.left,false);
+          batch.draw(currentGoBack,697,-100,500,500);
           batch.end();
         }
     }
