@@ -4,17 +4,18 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class MainMenu implements Screen {
 
     public static boolean startGame = false;
+    public boolean showCredits = false;
 
     //textures
     //buttons
@@ -22,6 +23,7 @@ public class MainMenu implements Screen {
     Texture startBtnActive;
     Texture currentButton;
     Texture musicOnT, musicOffT,currentMusic;
+    Texture credits,creditsActive, currentCredits;
     //title
     Texture title;
     //background
@@ -39,6 +41,12 @@ public class MainMenu implements Screen {
     Music music;//current background music
     Music pauseMusic;//sound effect when the player clicks the mute button/start button
     boolean musicOn = true;
+
+    //fonts
+    BitmapFont font;
+    float verticalMargin,leftx,rightx,centerx,row1Y,row2Y,sectionWidth;
+
+    BitmapFont font2;
 
     public MainMenu() {
 
@@ -68,6 +76,11 @@ public class MainMenu implements Screen {
         //sets the music-off texture
         musicOffT = new Texture("musicOff.png");
 
+        //sets credits
+        credits = new Texture("credits1.png");
+        creditsActive = new Texture("credits2.png");
+        currentCredits = credits;
+
         //the current music texture is on by default
         currentMusic = musicOnT;
 
@@ -77,6 +90,42 @@ public class MainMenu implements Screen {
 
         //sets batch
         batch = new SpriteBatch();
+
+
+        //font stuff
+        //creates a bitmapFont from our file
+        FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("NugoSansLight-9YzoK.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        FreeTypeFontGenerator.FreeTypeFontParameter fontParameter2 = new FreeTypeFontGenerator.FreeTypeFontParameter();
+
+        //sets font1 attributes
+        fontParameter.size = 172;
+        fontParameter.borderWidth = 3.6f;
+        fontParameter.color = new Color(1,1,1,1);
+        fontParameter.borderColor = new Color(1,1,1,1);
+
+        font = fontGenerator.generateFont(fontParameter);
+
+        //sets font2 attributes
+        fontParameter2.size = 172;
+        fontParameter2.borderWidth = 3.6f;
+        fontParameter2.color = new Color(1,1,1,1);
+        fontParameter2.borderColor = new Color(1,1,1,1);
+
+        font2 = fontGenerator.generateFont(fontParameter2);
+
+        //sets scale of font
+        font.getData().setScale(.3f);
+        font2.getData().setScale(.21f);
+
+        //calculates hud margins,etc
+        verticalMargin = font.getCapHeight()/2;
+        leftx = verticalMargin;
+        rightx = ghozti.game.screen.Screen.WORLD_WIDTH * 2 / 3 - leftx;
+        centerx = ghozti.game.screen.Screen.WORLD_WIDTH/3;
+        row1Y = ghozti.game.screen.Screen.WORLD_HEIGHT - verticalMargin;
+        row2Y = row1Y - verticalMargin - font.getCapHeight();
+        sectionWidth = ghozti.game.screen.Screen.WORLD_WIDTH/3;
     }
 
     public void update(){
@@ -129,6 +178,27 @@ public class MainMenu implements Screen {
                 currentMusic = musicOnT;
             }
         }
+
+        //System.out.println(Gdx.input.getX() + "    " + Gdx.input.getY());
+
+        boolean creditsCheck1 = false,creditsCheck2 = false;
+
+        //same functionality as before except it is for the credits screen
+        if (Gdx.input.getX() >= 786 && Gdx.input.getX() <= 1125) {
+            creditsCheck1 = true;
+        }
+        if (Gdx.input.getY() >= 900 && Gdx.input.getY() <= 959){
+            creditsCheck2 = true;
+        }
+
+        if (creditsCheck1 && creditsCheck2){
+            currentCredits = creditsActive;
+            if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+                showCredits = true;
+            }
+        }else {
+            currentCredits = credits;
+        }
     }
 
     @Override
@@ -139,7 +209,8 @@ public class MainMenu implements Screen {
     @Override
     public void render(float delta) {
         //once the game starts nothing will be rendered
-        if (!startGame) {
+
+        if (!startGame || showCredits) {
             Gdx.gl.glClearColor(.128f, .128f, .128f, .1f);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
             update();
@@ -151,7 +222,22 @@ public class MainMenu implements Screen {
             batch.draw(currentMusic, 1800, 50, 100, 100);
             batch.draw(currentButton, 710, 50, 500, 500);
             batch.draw(currentMusic, 1800, 50, 100, 100);
+            batch.draw(currentCredits,697,-100,500,500);
             batch.end();
+        }
+
+        if (showCredits){
+          Gdx.gl.glClearColor(0, 0, 0, 0);
+          Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+          batch.begin();
+          font.draw(batch,"Programmer:",0,1050,sectionWidth, Align.left,false);
+          font2.draw(batch,"Ghozti",0,950,sectionWidth, Align.left,false);
+          font.draw(batch,"Art & assets By:",0,850,sectionWidth, Align.left,false);
+          font2.draw(batch,"Brit & Ghozti",0,750,sectionWidth, Align.left,false);
+          font.draw(batch,"Music By:",0,650,sectionWidth, Align.left,false);
+          font2.draw(batch,"Fesliyan Studios",0,550,sectionWidth, Align.left,false);
+          font2.draw(batch,"find them here: https://www.fesliyanstudios.com/",0,500,sectionWidth, Align.left,false);
+          batch.end();
         }
     }
 
