@@ -88,7 +88,7 @@ public class Screen implements com.badlogic.gdx.Screen {
         pauseMusic.setVolume(.5f);
     }
 
-    public void updateGame(){
+    public void updateGame(float delta){
         if (Gdx.input.isKeyPressed(Input.Keys.P)){
             music.pause();
             pauseMusic.play();
@@ -101,6 +101,10 @@ public class Screen implements com.badlogic.gdx.Screen {
             paused = false;
             Gdx.graphics.setContinuousRendering(true);
         }
+
+        player.move(delta);
+        updatePowerUp(delta);
+        createCards();
     }
 
     public void renderPowerUp(Batch batch){
@@ -136,7 +140,7 @@ public class Screen implements com.badlogic.gdx.Screen {
     float currentInd;
 
     public void createCards(){
-        detectCollision();
+        GraphicsCard.detectCollision(player,scalper,graphicsCards);
 
         if(graphicsCards.get(0) == null){
             graphicsCards.set(0, new GraphicsCard(atlas,100,50,WORLD_WIDTH,WORLD_HEIGHT));
@@ -149,24 +153,6 @@ public class Screen implements com.badlogic.gdx.Screen {
         if(graphicsCards.get(2) == null){
             graphicsCards.set(2, new GraphicsCard(atlas,100,50,WORLD_WIDTH,WORLD_HEIGHT));
             currentInd = (float) ((Math.random() * (2 - 0) + 0));
-        }
-    }
-
-    public void detectCollision(){
-        if(graphicsCards.get(0).collides(player,scalper)) {
-            Sound sound = Gdx.audio.newSound(Gdx.files.internal("unlock.wav"));
-            sound.play(1.0f);
-            graphicsCards.set(0,null);
-        }
-        if(graphicsCards.get(1).collides(player,scalper)) {
-            Sound sound = Gdx.audio.newSound(Gdx.files.internal("unlock.wav"));
-            sound.play(1.0f);
-            graphicsCards.set(1,null);
-        }
-        if(graphicsCards.get(2).collides(player,scalper)) {
-            Sound sound = Gdx.audio.newSound(Gdx.files.internal("unlock.wav"));
-            sound.play(1.0f);
-            graphicsCards.set(2,null);
         }
     }
 
@@ -184,10 +170,7 @@ public class Screen implements com.badlogic.gdx.Screen {
         Gdx.gl.glClearColor(.128f,.128f,.128f,.1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        updateGame();
-        player.move(delta);
-        updatePowerUp(delta);
-        createCards();
+        updateGame(delta);
 
         batch.begin();
 

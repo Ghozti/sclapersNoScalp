@@ -1,11 +1,15 @@
 package ghozti.game.entities.graphicsCard;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import ghozti.game.entities.npc.Scalper;
 import ghozti.game.entities.player.Player;
+
+import java.util.ArrayList;
 
 public class GraphicsCard {
 
@@ -55,6 +59,24 @@ public class GraphicsCard {
         if(player.getBoundingRect().overlaps(boundingRect)) player.setScore(player.getScore()+player.getScoringNumber());
         else if (scalper.getBoundingRect().overlaps(boundingRect)) scalper.setScore(scalper.getScore()+scalper.getScoringNumber());
         return player.getBoundingRect().overlaps(boundingRect) || scalper.getBoundingRect().overlaps(boundingRect);
+    }
+
+    public static void detectCollision(Player player, Scalper scalper, ArrayList<GraphicsCard> graphicsCards){
+        if(graphicsCards.get(0).collides(player,scalper)) {
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("unlock.wav"));
+            sound.play(1.0f);
+            graphicsCards.set(0,null);
+        }
+        if(graphicsCards.get(1).collides(player,scalper)) {
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("unlock.wav"));
+            sound.play(1.0f);
+            graphicsCards.set(1,null);
+        }
+        if(graphicsCards.get(2).collides(player,scalper)) {
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("unlock.wav"));
+            sound.play(1.0f);
+            graphicsCards.set(2,null);
+        }
     }
 
     //creates an array with 2 randomly created floats for the x and y pos
