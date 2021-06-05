@@ -173,10 +173,10 @@ public class MainMenu implements Screen {
         }
 
         //same functionality as before except it is for the mute functionilty
-        if (Gdx.input.getX() >= 1800 && Gdx.input.getX() <= 1880) {
+        if (Gdx.input.getX() >= WORLD_WIDTH/(16/15f) && Gdx.input.getX() <= WORLD_WIDTH/(48/47f)) {
             musicCheck1 = true;
         }
-        if (Gdx.input.getY() >= 935 && Gdx.input.getY() <= 1006){
+        if (Gdx.input.getY() >=  WORLD_HEIGHT/(216/187f) && Gdx.input.getY() <=  WORLD_HEIGHT/(540/503f)){
             musicCheck2 = true;
         }
 
