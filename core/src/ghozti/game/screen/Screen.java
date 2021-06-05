@@ -79,7 +79,7 @@ public class Screen implements com.badlogic.gdx.Screen {
         //2019-01-02_-_8_Bit_Menu_-_David_Renda_-_FesliyanStudios.com.wav
 
         music = Gdx.audio.newMusic(Gdx.files.internal("2020-03-22_-_A_Bit_Of_Hope_-_David_Fesliyan.wav"));
-        music.setVolume(0.2f);
+        music.setVolume(1f);
         music.setLooping(true);
         music.play();
 

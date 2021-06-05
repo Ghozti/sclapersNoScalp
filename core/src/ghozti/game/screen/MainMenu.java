@@ -56,13 +56,13 @@ public class MainMenu implements Screen {
 
         //sets the background music
         music = Gdx.audio.newMusic(Gdx.files.internal("2019-01-02_-_8_Bit_Menu_-_David_Renda_-_FesliyanStudios.com.wav"));
-        music.setVolume(0.5f);
+        music.setVolume(1f);
         music.setLooping(true);
         music.play();
 
         //sets the sound effects
         pauseMusic = Gdx.audio.newMusic(Gdx.files.internal("mixkit-quick-jump-arcade-game-239.wav"));
-        pauseMusic.setVolume(.5f);
+        pauseMusic.setVolume(0.5f);
 
         //sets the title
         title = new Texture("title.png");
@@ -188,7 +188,7 @@ public class MainMenu implements Screen {
             }
             if(Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && !musicOn){
                 musicOn = true;
-                music.setVolume(.5f);
+                music.setVolume(1f);
                 pauseMusic.play();
                 currentMusic = musicOnT;
             }
@@ -217,10 +217,10 @@ public class MainMenu implements Screen {
         boolean gobackCheck1 = false, gobackCheck2 = false;
 
         //same functionality as before except it is for the credits screen
-        if (Gdx.input.getX() >= WORLD_WIDTH/(385/157f) && Gdx.input.getX() <= WORLD_WIDTH/(640/369f)) {
+        if (Gdx.input.getX() >= WORLD_WIDTH/(640/261f) && Gdx.input.getX() <= WORLD_WIDTH/(960/563f)) {
             gobackCheck1 = true;
         }
-        if (Gdx.input.getY() >= WORLD_HEIGHT/(27/17f) && Gdx.input.getY() <= WORLD_HEIGHT/(3/2f)){
+        if (Gdx.input.getY() >= WORLD_HEIGHT/(540/461f) && Gdx.input.getY() <= WORLD_HEIGHT/(72/65f)){
             gobackCheck2 = true;
         }
 
@@ -262,13 +262,13 @@ public class MainMenu implements Screen {
           Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
           update();
           batch.begin();
-          font.draw(batch,"Programmer:",0,1050,sectionWidth, Align.left,false);
-          font2.draw(batch,"Ghozti",0,950,sectionWidth, Align.left,false);
-          font.draw(batch,"Art & assets By:",0,850,sectionWidth, Align.left,false);
-          font2.draw(batch,"Brit & Ghozti",0,750,sectionWidth, Align.left,false);
-          font.draw(batch,"Music By:",0,650,sectionWidth, Align.left,false);
-          font2.draw(batch,"Fesliyan Studios",0,550,sectionWidth, Align.left,false);
-          font2.draw(batch,"find them here: https://www.fesliyanstudios.com/",0,500,sectionWidth, Align.left,false);
+          font.draw(batch,"Programmer:",WORLD_WIDTH/384,WORLD_HEIGHT/(36/35f),sectionWidth, Align.left,false);
+          font2.draw(batch,"Ghozti",WORLD_WIDTH/384,WORLD_HEIGHT/(108/95f),sectionWidth, Align.left,false);
+          font.draw(batch,"Art & assets By:",WORLD_WIDTH/384,WORLD_HEIGHT/(108/85f),sectionWidth, Align.left,false);
+          font2.draw(batch,"Brit & Ghozti",WORLD_WIDTH/384,WORLD_HEIGHT/(36/25f),sectionWidth, Align.left,false);
+          font.draw(batch,"Music By:",WORLD_WIDTH/384,WORLD_HEIGHT/(108/65f),sectionWidth, Align.left,false);
+          font2.draw(batch,"Fesliyan Studios",WORLD_WIDTH/384,WORLD_HEIGHT/(108/55f),sectionWidth, Align.left,false);
+          font2.draw(batch,"find them here: https://www.fesliyanstudios.com/",WORLD_WIDTH/384,WORLD_HEIGHT/(54/25f),sectionWidth, Align.left,false);
           batch.draw(currentGoBack,WORLD_WIDTH/(1920/697f), WORLD_HEIGHT-WORLD_HEIGHT-WORLD_HEIGHT/8, WORLD_WIDTH/(96/25f), WORLD_HEIGHT/(54/25));
           batch.end();
         }
