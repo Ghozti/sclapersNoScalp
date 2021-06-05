@@ -151,7 +151,6 @@ public class MainMenu implements Screen {
         boolean musicCheck1 = false,musicCheck2 = false;
 
         //the mouse must be positioned in a certain coordinate range for both check1 and check2 to be true
-        System.out.println(Gdx.input.getX() + "        " + Gdx.input.getY());
         if (Gdx.input.getX() <= WORLD_WIDTH/(1920/1163f) && Gdx.input.getX() >= WORLD_WIDTH/(960/377f)) {
             check1 = true;
         }
@@ -198,10 +197,10 @@ public class MainMenu implements Screen {
         boolean creditsCheck1 = false,creditsCheck2 = false;
 
         //same functionality as before except it is for the credits screen
-        if (Gdx.input.getX() >= 786 && Gdx.input.getX() <= 1125) {
+        if (Gdx.input.getX() >= WORLD_WIDTH/(640/261f) && Gdx.input.getX() <= WORLD_WIDTH/(960/563f)) {
             creditsCheck1 = true;
         }
-        if (Gdx.input.getY() >= 900 && Gdx.input.getY() <= 959){
+        if (Gdx.input.getY() >= WORLD_HEIGHT/(540/461f) && Gdx.input.getY() <= WORLD_HEIGHT/(72/65f)){
             creditsCheck2 = true;
         }
 
@@ -218,10 +217,10 @@ public class MainMenu implements Screen {
         boolean gobackCheck1 = false, gobackCheck2 = false;
 
         //same functionality as before except it is for the credits screen
-        if (Gdx.input.getX() >= 790 && Gdx.input.getX() <= 1107) {
+        if (Gdx.input.getX() >= WORLD_WIDTH/(385/157f) && Gdx.input.getX() <= WORLD_WIDTH/(640/369f)) {
             gobackCheck1 = true;
         }
-        if (Gdx.input.getY() >= 901 && Gdx.input.getY() <= 956){
+        if (Gdx.input.getY() >= WORLD_HEIGHT/(27/17f) && Gdx.input.getY() <= WORLD_HEIGHT/(3/2f)){
             gobackCheck2 = true;
         }
 
