@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -25,6 +26,8 @@ public class MainMenu implements Screen {
     Texture musicOnT, musicOffT,currentMusic;
     Texture credits,creditsActive, currentCredits;
     Texture goBack1, goBack2, currentGoBack;
+    //bounding rect for the buttons
+    com.badlogic.gdx.math.Rectangle startBtnRect,musicRect, creditsRect,goBackRect,mouseRect;
     //title
     Texture title;
     //background
@@ -35,8 +38,8 @@ public class MainMenu implements Screen {
     //batch
     SpriteBatch batch;
     //World
-    public static final float WORLD_HEIGHT = 1080;
-    public static final float WORLD_WIDTH = 1920;
+    public static final float WORLD_HEIGHT = Gdx.graphics.getHeight();
+    public static final float WORLD_WIDTH = Gdx.graphics.getWidth();
 
     //music
     Music music;//current background music
@@ -71,11 +74,14 @@ public class MainMenu implements Screen {
         startBtn =  new Texture("start.png");
         //sets the start button when it's activated
         startBtnActive = new Texture("start2.png");
+        currentButton = startBtn;
 
         //sets the music on texture
         musicOnT = new Texture("musicOn.png");
         //sets the music-off texture
         musicOffT = new Texture("musicOff.png");
+        currentMusic = musicOnT;
+
 
         //sets credits
         credits = new Texture("credits1.png");
@@ -92,11 +98,14 @@ public class MainMenu implements Screen {
 
         //sets camera, viewport
         camera = new OrthographicCamera();
-        viewport = new StretchViewport(WORLD_WIDTH,WORLD_HEIGHT,camera);
+        viewport = new StretchViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight(),camera);
 
         //sets batch
         batch = new SpriteBatch();
 
+        //sets the bounding rects
+        //startBtnRect = new com.badlogic.gdx.math.Rectangle(currentButton.getWidth() + 680,currentButton.getHeight(),50,50);
+        //mouseRect = new com.badlogic.gdx.math.Rectangle(Gdx.input.getX(), Gdx.input.getY(),30,30);
 
         //font stuff
         //creates a bitmapFont from our file
@@ -142,11 +151,12 @@ public class MainMenu implements Screen {
         boolean musicCheck1 = false,musicCheck2 = false;
 
         //the mouse must be positioned in a certain coordinate range for both check1 and check2 to be true
-        if (Gdx.input.getX() <= 1162 && Gdx.input.getX() >= 755) {
+        System.out.println(Gdx.input.getX() + "        " + Gdx.input.getY());
+        if (Gdx.input.getX() <= WORLD_WIDTH/(1920/1163f) && Gdx.input.getX() >= WORLD_WIDTH/(960/377f)) {
             check1 = true;
         }
-        if (Gdx.input.getY() <= 823 && Gdx.input.getY() >= 736){
-           check2 = true;
+        if (Gdx.input.getY() <= WORLD_HEIGHT/(4/3f) && Gdx.input.getY() >= WORLD_HEIGHT/(1080/721f)){
+            check2 = true;
         }
 
         //if check1 and check2 are true the music will stop and the sound effect will play the static "startgame" boolean will be true (this is the start game functionality)
@@ -240,13 +250,11 @@ public class MainMenu implements Screen {
             update();
             batch.begin();
             batch.draw(background, 0, 0, WORLD_WIDTH, WORLD_HEIGHT);
-
             //DRAW EVERYTHING ELSE BELOW:
-            batch.draw(title, 430, 150, 1050, 1050);
-            batch.draw(currentMusic, 1800, 50, 100, 100);
-            batch.draw(currentButton, 710, 50, 500, 500);
-            batch.draw(currentMusic, 1800, 50, 100, 100);
-            batch.draw(currentCredits,697,-100,500,500);
+            batch.draw(currentButton, WORLD_WIDTH/(192/71f), WORLD_HEIGHT/(108/5f), WORLD_WIDTH/(96/25f), WORLD_HEIGHT/(54/25));
+            batch.draw(title, WORLD_WIDTH/(96/23f), WORLD_HEIGHT/(36/5f), WORLD_WIDTH/1.9f, WORLD_HEIGHT/1.3f);
+            batch.draw(currentMusic, WORLD_WIDTH/(16/15f), WORLD_HEIGHT/(108/5f), WORLD_WIDTH/(96/5f), WORLD_HEIGHT/(54/5f));
+            batch.draw(currentCredits,WORLD_WIDTH/(1920/697f), WORLD_HEIGHT-WORLD_HEIGHT-WORLD_HEIGHT/8, WORLD_WIDTH/(96/25f), WORLD_HEIGHT/(54/25));
             batch.end();
         }
 
@@ -262,7 +270,7 @@ public class MainMenu implements Screen {
           font.draw(batch,"Music By:",0,650,sectionWidth, Align.left,false);
           font2.draw(batch,"Fesliyan Studios",0,550,sectionWidth, Align.left,false);
           font2.draw(batch,"find them here: https://www.fesliyanstudios.com/",0,500,sectionWidth, Align.left,false);
-          batch.draw(currentGoBack,697,-100,500,500);
+          batch.draw(currentGoBack,WORLD_WIDTH/(1920/697f), WORLD_HEIGHT-WORLD_HEIGHT-WORLD_HEIGHT/8, WORLD_WIDTH/(96/25f), WORLD_HEIGHT/(54/25));
           batch.end();
         }
     }

@@ -12,10 +12,11 @@ public class DesktopLauncher {
 		config.foregroundFPS = 144;
 		config.fullscreen = true;
 		config.vSyncEnabled = true;
-		config.resizable = true;
+		config.resizable = false;
 		config.title = "Silicon Crisis";
 		new LwjglApplication(new Game(), config);
 	}
 
 	//TODO optimze the game for higher resolutions, refactor, comment and replace textures with texture regions in Screen.java and MainMenu.java
+	//TODO do whatever the hell i did in amin menu for the aspect ratios, formula: worldWidth/height/x = width/height/x/y
 }
