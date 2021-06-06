@@ -17,6 +17,7 @@ import ghozti.game.entities.graphicsCard.GraphicsCard;
 import ghozti.game.entities.npc.Scalper;
 import ghozti.game.entities.player.Player;
 import ghozti.game.entities.player.hud.Hud;
+
 import java.util.ArrayList;
 
 public class Screen implements com.badlogic.gdx.Screen {
@@ -81,8 +82,9 @@ public class Screen implements com.badlogic.gdx.Screen {
         music = Gdx.audio.newMusic(Gdx.files.internal("2020-03-22_-_A_Bit_Of_Hope_-_David_Fesliyan.wav"));
         music.setVolume(1f);
         music.setLooping(true);
-        music.play();
-
+        if(MainMenu.musicOn) {
+            music.play();
+        }
         pauseMusic = Gdx.audio.newMusic(Gdx.files.internal("mixkit-quick-jump-arcade-game-239.wav"));
         pauseMusic.setVolume(.5f);
     }
@@ -90,12 +92,17 @@ public class Screen implements com.badlogic.gdx.Screen {
     public void updateGame(float delta){
         if (Gdx.input.isKeyPressed(Input.Keys.P)){
             music.pause();
-            pauseMusic.play();
+            if(MainMenu.musicOn) {
+                pauseMusic.play();
+            }
             paused = true;
             Gdx.graphics.setContinuousRendering(false);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.R) && paused){
             music.play();
+            if(MainMenu.musicOn) {
+                music.play();
+            }
             pauseMusic.play();
             paused = false;
             Gdx.graphics.setContinuousRendering(true);

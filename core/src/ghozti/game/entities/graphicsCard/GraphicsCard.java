@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import ghozti.game.entities.npc.Scalper;
 import ghozti.game.entities.player.Player;
-
 import java.util.ArrayList;
 
 public class GraphicsCard {

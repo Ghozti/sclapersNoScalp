@@ -44,7 +44,7 @@ public class MainMenu implements Screen {
     //music
     Music music;//current background music
     Music pauseMusic;//sound effect when the player clicks the mute button/start button
-    boolean musicOn = true;
+    static boolean musicOn = true;
 
     //fonts
     BitmapFont font;
