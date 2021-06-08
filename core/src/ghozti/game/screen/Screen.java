@@ -187,7 +187,7 @@ public class Screen implements com.badlogic.gdx.Screen {
         renderPowerUp(batch);
 
         player.draw(batch,delta);
-        //scalper.draw(batch,delta,graphicsCards.get((int) currentInd));
+        scalper.draw(batch,delta,graphicsCards.get((int) currentInd));
 
         hud.render(batch,player.getScore(),scalper.getScore());
 
@@ -220,4 +220,6 @@ public class Screen implements com.badlogic.gdx.Screen {
     @Override
     public void dispose() {
     }
+
+    //TODO display to the user what card they got and what card they got
 }

@@ -30,7 +30,7 @@ public class GraphicsCard {
         //sets the positions
         float[] positions = setPosition(worldW,worldH);
         //adds all possible textures into the array
-        textureRegions = new TextureRegion[9];
+        textureRegions = new TextureRegion[10];
 
         textureRegions[0] = atlas.findRegion("3070");
         textureRegions[1] = atlas.findRegion("suprim");
@@ -41,6 +41,7 @@ public class GraphicsCard {
         textureRegions[6] = atlas.findRegion("6800");
         textureRegions[7] = atlas.findRegion("midnight");
         textureRegions[8] = atlas.findRegion("6900xt");
+        textureRegions[9] = atlas.findRegion("3060ti");
 
 
         //sets the actual current texture randomly.
@@ -98,6 +99,6 @@ public class GraphicsCard {
 
     public void draw(Batch batch){
         batch.draw(currentRegion,boundingRect.x-10,boundingRect.y-30,textureW,textureH);
-        batch.draw(scalp,boundingRect.x,boundingRect.y,boundingRect.width,boundingRect.height);
+        //batch.draw(scalp,boundingRect.x,boundingRect.y,boundingRect.width,boundingRect.height);
     }
 }
