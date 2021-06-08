@@ -66,7 +66,7 @@ public class GraphicsCard {
         }else if (textureRegions[2].equals(currentRegion)) {
             card = "3080 FE";
         }else if (textureRegions[3].equals(currentRegion)) {
-            card = "3090 DE";
+            card = "3090 FE";
         }else if (textureRegions[4].equals(currentRegion)) {
             card = "6700xt";
         }else if (textureRegions[5].equals(currentRegion)) {
@@ -125,7 +125,7 @@ public class GraphicsCard {
     Texture scalp = new Texture("22.jpg");
 
     public void draw(Batch batch){
-        Screen.font.draw(batch,card,boundingRect.x-10, boundingRect.y, -40,false);
+        Screen.font.draw(batch,card,boundingRect.x, currentRegion == textureRegions[5] ? boundingRect.y-30 : boundingRect.y-15, Screen.WORLD_WIDTH/3,false);
         batch.draw(currentRegion,boundingRect.x-10,boundingRect.y-30,textureW,textureH);
         //batch.draw(scalp,boundingRect.x,boundingRect.y,boundingRect.width,boundingRect.height);
     }

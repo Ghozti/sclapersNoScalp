@@ -19,10 +19,10 @@ public class Font {
         FreeTypeFontGenerator.FreeTypeFontParameter fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
 
         //sets font attributes
-        fontParameter.size = 172;
+        fontParameter.size = 70;
         fontParameter.borderWidth = 3.6f;
-        fontParameter.color = new Color(1,1,1,.3f);
-        fontParameter.borderColor = new Color(1,1,1,.3f);
+        fontParameter.color = new Color(1,1,1,1);
+        fontParameter.borderColor = new Color(1,1,1,1);
 
         font = fontGenerator.generateFont(fontParameter);
 

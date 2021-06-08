@@ -3,6 +3,7 @@ package ghozti.game.additionals;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import ghozti.game.entities.npc.Scalper;
 import ghozti.game.entities.player.Player;
+import ghozti.game.screen.Screen;
 
 public class ScoreBooster extends PowerUp{
     public ScoreBooster(float width, float height) {
@@ -23,6 +24,9 @@ public class ScoreBooster extends PowerUp{
 
     @Override
     public void draw(Batch batch) {
-        if (!hide) batch.draw(texture, getX(), getY(), getWidth(), getHeight());
+        if (!hide) {
+            Screen.font.draw(batch,card,boundingRect.x, currentRegion == textureRegions[5] ? boundingRect.y-30 : boundingRect.y-15, Screen.WORLD_WIDTH/3,false);
+            batch.draw(texture, getX(), getY(), getWidth(), getHeight());
+        }
     }
 }
