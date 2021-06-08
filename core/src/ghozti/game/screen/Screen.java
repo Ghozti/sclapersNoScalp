@@ -27,6 +27,7 @@ public class Screen implements com.badlogic.gdx.Screen {
 
     //textures
     TextureAtlas atlas;
+    TextureAtlas gpuAtlas;
     SpriteBatch batch;
     Texture background = new Texture("22.jpg");
     Texture pausedT = new Texture("paused.png");
@@ -59,11 +60,12 @@ public class Screen implements com.badlogic.gdx.Screen {
 
         //sets texture atlas and batch
         atlas = new TextureAtlas("general.atlas");
+        gpuAtlas = new TextureAtlas("gpu.atlas");
         batch = new SpriteBatch();
 
         //initializes the game objects
         for (int i = 0; i < 3; i++) {
-            graphicsCards.add(new GraphicsCard(new TextureAtlas("gpu.atlas"),100,100,WORLD_WIDTH,WORLD_HEIGHT));
+            graphicsCards.add(new GraphicsCard(gpuAtlas,100,100,WORLD_WIDTH,WORLD_HEIGHT));
         }
         powerUps.add(new SpeedBoost(100,100));
         powerUps.add(new StockCrash(100,100));
@@ -89,7 +91,6 @@ public class Screen implements com.badlogic.gdx.Screen {
     }
 
     public void updateGame(float delta){
-        System.out.println(Gdx.graphics.getFramesPerSecond());
         if (Gdx.input.isKeyPressed(Input.Keys.P)){
             music.pause();
             if(MainMenu.musicOn) {
@@ -149,15 +150,15 @@ public class Screen implements com.badlogic.gdx.Screen {
         GraphicsCard.detectCollision(player,scalper,graphicsCards);
 
         if(graphicsCards.get(0) == null){
-            graphicsCards.set(0, new GraphicsCard(atlas,100,50,WORLD_WIDTH,WORLD_HEIGHT));
+            graphicsCards.set(0, new GraphicsCard(gpuAtlas,100,100,WORLD_WIDTH,WORLD_HEIGHT));
             currentInd = (float) ((Math.random() * (2 - 0) + 0));
         }
         if(graphicsCards.get(1) == null){
-            graphicsCards.set(1, new GraphicsCard(atlas,100,50,WORLD_WIDTH,WORLD_HEIGHT));
+            graphicsCards.set(1, new GraphicsCard(gpuAtlas,100,100,WORLD_WIDTH,WORLD_HEIGHT));
             currentInd = (float) ((Math.random() * (2 - 0) + 0));
         }
         if(graphicsCards.get(2) == null){
-            graphicsCards.set(2, new GraphicsCard(atlas,100,50,WORLD_WIDTH,WORLD_HEIGHT));
+            graphicsCards.set(2, new GraphicsCard(gpuAtlas,100,100,WORLD_WIDTH,WORLD_HEIGHT));
             currentInd = (float) ((Math.random() * (2 - 0) + 0));
         }
     }
@@ -186,7 +187,7 @@ public class Screen implements com.badlogic.gdx.Screen {
         renderPowerUp(batch);
 
         player.draw(batch,delta);
-        scalper.draw(batch,delta,graphicsCards.get((int) currentInd));
+        //scalper.draw(batch,delta,graphicsCards.get((int) currentInd));
 
         hud.render(batch,player.getScore(),scalper.getScore());
 

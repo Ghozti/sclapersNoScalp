@@ -2,6 +2,7 @@ package ghozti.game.entities.graphicsCard;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -21,15 +22,13 @@ public class GraphicsCard {
     float width,height;
     //bounding
     Rectangle boundingRect;
+    int textureW = 100,textureH = 100;
 
     public GraphicsCard(TextureAtlas textureAtlas, float width, float height, float worldW, float worldH){
         //sets the texture atlas
         this.atlas = textureAtlas;
         //sets the positions
         float[] positions = setPosition(worldW,worldH);
-        //sets the boundingrect for collision and positioning.
-        boundingRect = new Rectangle(positions[0],positions[1],width,height);
-
         //adds all possible textures into the array
         textureRegions = new TextureRegion[9];
 
@@ -46,6 +45,14 @@ public class GraphicsCard {
 
         //sets the actual current texture randomly.
         currentRegion = textureRegions[(int) ((Math.random() * ((textureRegions.length)) + 0))];
+
+        if (currentRegion == textureRegions[5]) {
+            textureW = 100;
+            textureH = 50;
+        }
+
+        //sets the boundingrect for collision and positioning.
+        boundingRect = new Rectangle(positions[0]+10,positions[1]+30,80,40);
     }
 
     //getters and setters
@@ -87,7 +94,10 @@ public class GraphicsCard {
         return new float[]{x,y};
     }
 
+    Texture scalp = new Texture("22.jpg");
+
     public void draw(Batch batch){
-        batch.draw(currentRegion,boundingRect.x,boundingRect.y,boundingRect.width,boundingRect.height);
+        batch.draw(currentRegion,boundingRect.x-10,boundingRect.y-30,textureW,textureH);
+        batch.draw(scalp,boundingRect.x,boundingRect.y,boundingRect.width,boundingRect.height);
     }
 }
