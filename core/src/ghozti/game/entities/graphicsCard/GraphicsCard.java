@@ -23,6 +23,8 @@ public class GraphicsCard {
     //bounding
     Rectangle boundingRect;
     int textureW = 100,textureH = 100;
+    //dialogue
+    String card;
 
     public GraphicsCard(TextureAtlas textureAtlas, float width, float height, float worldW, float worldH){
         //sets the texture atlas
@@ -43,7 +45,6 @@ public class GraphicsCard {
         textureRegions[8] = atlas.findRegion("6900xt");
         textureRegions[9] = atlas.findRegion("3060ti");
 
-
         //sets the actual current texture randomly.
         currentRegion = textureRegions[(int) ((Math.random() * ((textureRegions.length)) + 0))];
 
@@ -54,6 +55,28 @@ public class GraphicsCard {
 
         //sets the boundingrect for collision and positioning.
         boundingRect = new Rectangle(positions[0]+10,positions[1]+30,80,40);
+
+        if (textureRegions[0].equals(currentRegion)) {
+            card = "3070 FE";
+        }else if (textureRegions[1].equals(currentRegion)) {
+            card = "3080 Suprim";
+        }else if (textureRegions[2].equals(currentRegion)) {
+            card = "3080 FE";
+        }else if (textureRegions[3].equals(currentRegion)) {
+            card = "3090 DE";
+        }else if (textureRegions[4].equals(currentRegion)) {
+            card = "6700xt";
+        }else if (textureRegions[5].equals(currentRegion)) {
+            card = "6700xt red devil";
+        }else if (textureRegions[6].equals(currentRegion)) {
+            card = "6800";
+        }else if (textureRegions[7].equals(currentRegion)) {
+            card = "6800xt midnight";
+        }else if (textureRegions[8].equals(currentRegion)) {
+            card = "6900xt";
+        }else if (textureRegions[9].equals(currentRegion)) {
+            card = "3060ti";
+        }
     }
 
     //getters and setters
