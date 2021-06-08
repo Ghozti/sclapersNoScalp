@@ -31,19 +31,21 @@ public class GraphicsCard {
         boundingRect = new Rectangle(positions[0],positions[1],width,height);
 
         //adds all possible textures into the array
-        textureRegions = new TextureRegion[8];
+        textureRegions = new TextureRegion[9];
 
         textureRegions[0] = atlas.findRegion("3070");
-        textureRegions[1] = atlas.findRegion("msi3080");
+        textureRegions[1] = atlas.findRegion("suprim");
         textureRegions[2] = atlas.findRegion("3080");
         textureRegions[3] = atlas.findRegion("3090");
         textureRegions[4] = atlas.findRegion("6700xt");
-        textureRegions[5] = atlas.findRegion("myKid");
+        textureRegions[5] = atlas.findRegion("redDevil");
         textureRegions[6] = atlas.findRegion("6800");
-        textureRegions[7] = atlas.findRegion("black6800xt");
+        textureRegions[7] = atlas.findRegion("midnight");
+        textureRegions[8] = atlas.findRegion("6900xt");
+
 
         //sets the actual current texture randomly.
-        currentRegion = textureRegions[(int) ((Math.random() * ((textureRegions.length - 0)) + 0))];
+        currentRegion = textureRegions[(int) ((Math.random() * ((textureRegions.length)) + 0))];
     }
 
     //getters and setters

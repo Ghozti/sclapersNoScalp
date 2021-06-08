@@ -17,7 +17,6 @@ import ghozti.game.entities.graphicsCard.GraphicsCard;
 import ghozti.game.entities.npc.Scalper;
 import ghozti.game.entities.player.Player;
 import ghozti.game.entities.player.hud.Hud;
-
 import java.util.ArrayList;
 
 public class Screen implements com.badlogic.gdx.Screen {
@@ -64,7 +63,7 @@ public class Screen implements com.badlogic.gdx.Screen {
 
         //initializes the game objects
         for (int i = 0; i < 3; i++) {
-            graphicsCards.add(new GraphicsCard(atlas,100,50,WORLD_WIDTH,WORLD_HEIGHT));
+            graphicsCards.add(new GraphicsCard(new TextureAtlas("gpu.atlas"),100,100,WORLD_WIDTH,WORLD_HEIGHT));
         }
         powerUps.add(new SpeedBoost(100,100));
         powerUps.add(new StockCrash(100,100));
@@ -72,8 +71,8 @@ public class Screen implements com.badlogic.gdx.Screen {
         powerUps.add(new ScoreBooster(100,100));
 
         currentPowerUp = powerUps.get((int) ((Math.random() * (powerUps.size() - 0)) + 0));
-        player = new Player(375,100,100,1000,1000);
-        scalper = new Scalper(400,100,100,10,10);
+        player = new Player(350,100,100,1000,1000);
+        scalper = new Scalper(380,100,100,10,10);
         hud = new Hud();
 
         //plays the background music
@@ -90,6 +89,7 @@ public class Screen implements com.badlogic.gdx.Screen {
     }
 
     public void updateGame(float delta){
+        System.out.println(Gdx.graphics.getFramesPerSecond());
         if (Gdx.input.isKeyPressed(Input.Keys.P)){
             music.pause();
             if(MainMenu.musicOn) {
