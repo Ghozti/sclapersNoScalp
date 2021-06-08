@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import ghozti.game.Font;
 import ghozti.game.additionals.*;
 import ghozti.game.entities.graphicsCard.GraphicsCard;
 import ghozti.game.entities.npc.Scalper;
@@ -53,6 +54,9 @@ public class Screen implements com.badlogic.gdx.Screen {
     Music music;
     Music pauseMusic;
 
+    //testing
+    public static Font font;
+
     public Screen(){
         //sets camera, viewport
         camera = new OrthographicCamera();
@@ -88,6 +92,8 @@ public class Screen implements com.badlogic.gdx.Screen {
         }
         pauseMusic = Gdx.audio.newMusic(Gdx.files.internal("mixkit-quick-jump-arcade-game-239.wav"));
         pauseMusic.setVolume(.5f);
+
+        font = new Font();
     }
 
     public void updateGame(float delta){

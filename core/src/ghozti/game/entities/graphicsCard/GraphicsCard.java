@@ -2,13 +2,10 @@ package ghozti.game.entities.graphicsCard;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Rectangle;
 import ghozti.game.entities.npc.Scalper;
 import ghozti.game.entities.player.Player;
@@ -30,8 +27,8 @@ public class GraphicsCard {
     int textureW = 100,textureH = 100;
     //dialogue
     String card;
-    BitmapFont font;
-    float verticalMargin,leftx,rightx,centerx,row1Y,row2Y,sectionWidth;
+    //bools
+    boolean collided;
 
     public GraphicsCard(TextureAtlas textureAtlas, float width, float height, float worldW, float worldH){
         //sets the texture atlas
@@ -39,7 +36,7 @@ public class GraphicsCard {
         //sets the positions
         float[] positions = setPosition(worldW,worldH);
         //adds all possible textures into the array
-        textureRegions = new TextureRegion[10];
+        textureRegions = new TextureRegion[9];
 
         textureRegions[0] = atlas.findRegion("3070");
         textureRegions[1] = atlas.findRegion("suprim");
@@ -50,7 +47,6 @@ public class GraphicsCard {
         textureRegions[6] = atlas.findRegion("6800");
         textureRegions[7] = atlas.findRegion("midnight");
         textureRegions[8] = atlas.findRegion("6900xt");
-        textureRegions[9] = atlas.findRegion("3060ti");
 
         //sets the actual current texture randomly.
         currentRegion = textureRegions[(int) ((Math.random() * ((textureRegions.length)) + 0))];
@@ -81,33 +77,7 @@ public class GraphicsCard {
             card = "6800xt midnight";
         }else if (textureRegions[8].equals(currentRegion)) {
             card = "6900xt";
-        }else if (textureRegions[9].equals(currentRegion)) {
-            card = "3060ti";
         }
-
-        //creates a bitmapFont from our file
-        FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("NugoSansLight-9YzoK.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-
-        //sets font attributes
-        fontParameter.size = 172;
-        fontParameter.borderWidth = 3.6f;
-        fontParameter.color = new Color(1,1,1,.3f);
-        fontParameter.borderColor = new Color(1,1,1,.3f);
-
-        font = fontGenerator.generateFont(fontParameter);
-
-        //sets scale of font
-        font.getData().setScale(.3f);
-
-        //calculates hud margins,etc
-        verticalMargin = font.getCapHeight()/2;
-        leftx = verticalMargin;
-        rightx = Screen.WORLD_WIDTH * 2 / 3 - leftx;
-        centerx = Screen.WORLD_WIDTH/3;
-        row1Y = Screen.WORLD_HEIGHT - verticalMargin;
-        row2Y = row1Y - verticalMargin - font.getCapHeight();
-        sectionWidth = Screen.WORLD_WIDTH/3;
     }
 
     //getters and setters
@@ -119,7 +89,10 @@ public class GraphicsCard {
     //collision detection for scalper and player
     public boolean collides(Player player, Scalper scalper){
         //sets scores for both scalper and player when collides
-        if(player.getBoundingRect().overlaps(boundingRect)) player.setScore(player.getScore()+player.getScoringNumber());
+        if(player.getBoundingRect().overlaps(boundingRect)) {
+            player.setScore(player.getScore()+player.getScoringNumber());
+            collided = true;
+        }
         else if (scalper.getBoundingRect().overlaps(boundingRect)) scalper.setScore(scalper.getScore()+scalper.getScoringNumber());
         return player.getBoundingRect().overlaps(boundingRect) || scalper.getBoundingRect().overlaps(boundingRect);
     }
@@ -152,6 +125,7 @@ public class GraphicsCard {
     Texture scalp = new Texture("22.jpg");
 
     public void draw(Batch batch){
+        Screen.font.draw(batch,card,boundingRect.x-10, boundingRect.y, -40,false);
         batch.draw(currentRegion,boundingRect.x-10,boundingRect.y-30,textureW,textureH);
         //batch.draw(scalp,boundingRect.x,boundingRect.y,boundingRect.width,boundingRect.height);
     }
