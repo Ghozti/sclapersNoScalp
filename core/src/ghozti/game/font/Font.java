@@ -1,4 +1,4 @@
-package ghozti.game;
+package ghozti.game.font;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

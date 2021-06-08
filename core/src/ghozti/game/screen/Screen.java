@@ -12,7 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import ghozti.game.Font;
+import ghozti.game.font.Font;
 import ghozti.game.additionals.*;
 import ghozti.game.entities.graphicsCard.GraphicsCard;
 import ghozti.game.entities.npc.Scalper;
