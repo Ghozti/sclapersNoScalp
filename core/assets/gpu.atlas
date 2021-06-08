@@ -1,0 +1,76 @@
+
+gpu.png
+size: 1024,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+3070
+  rotate: false
+  xy: 206, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+3080
+  rotate: false
+  xy: 676, 273
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+3090
+  rotate: false
+  xy: 778, 375
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+6700xt
+  rotate: false
+  xy: 676, 171
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+6800
+  rotate: false
+  xy: 2, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+6800xt
+  rotate: false
+  xy: 778, 273
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+6900xt
+  rotate: false
+  xy: 880, 375
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+midnight
+  rotate: false
+  xy: 104, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+redDevil
+  rotate: false
+  xy: 2, 104
+  size: 672, 371
+  orig: 672, 371
+  offset: 0, 0
+  index: -1
+suprim
+  rotate: false
+  xy: 676, 375
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
