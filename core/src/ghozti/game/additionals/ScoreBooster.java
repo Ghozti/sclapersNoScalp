@@ -25,7 +25,7 @@ public class ScoreBooster extends PowerUp{
     @Override
     public void draw(Batch batch) {
         if (!hide) {
-            Screen.font.draw(batch,card,boundingRect.x, currentRegion == textureRegions[5] ? boundingRect.y-30 : boundingRect.y-15, Screen.WORLD_WIDTH/3,false);
+            Screen.font.draw(batch,"Score Booster",boundingRect.x-10, boundingRect.y - 10, Screen.WORLD_WIDTH/3,false);
             batch.draw(texture, getX(), getY(), getWidth(), getHeight());
         }
     }
