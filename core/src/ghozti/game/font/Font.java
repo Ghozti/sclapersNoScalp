@@ -39,6 +39,32 @@ public class Font {
         sectionWidth = Screen.WORLD_WIDTH/3;
     }
 
+    public Font(int size){
+        //creates a bitmapFont from our file
+        FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("NugoSansLight-9YzoK.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+
+        //sets font attributes
+        fontParameter.size = size;
+        fontParameter.borderWidth = 3.6f;
+        fontParameter.color = new Color(1,1,1,1);
+        fontParameter.borderColor = new Color(1,1,1,1);
+
+        font = fontGenerator.generateFont(fontParameter);
+
+        //sets scale of font
+        font.getData().setScale(.3f);
+
+        //calculates hud margins,etc
+        verticalMargin = font.getCapHeight()/2;
+        leftx = verticalMargin;
+        rightx = Screen.WORLD_WIDTH * 2 / 3 - leftx;
+        centerx = Screen.WORLD_WIDTH/3;
+        row1Y = Screen.WORLD_HEIGHT - verticalMargin;
+        row2Y = row1Y - verticalMargin - font.getCapHeight();
+        sectionWidth = Screen.WORLD_WIDTH/3;
+    }
+
     public void draw(Batch batch, String text, float x, float y, float sectionW, boolean wrap){
         font.draw(batch,text,x,y,sectionW, Align.left,wrap);
     }
