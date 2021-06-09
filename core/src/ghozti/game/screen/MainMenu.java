@@ -26,6 +26,8 @@ public class MainMenu implements Screen {
     Texture musicOnT, musicOffT,currentMusic;
     Texture credits,creditsActive, currentCredits;
     Texture goBack1, goBack2, currentGoBack;
+    Texture character,character2,currentCharacter;
+    boolean changeCharacter;
     //bounding rect for the buttons
     com.badlogic.gdx.math.Rectangle startBtnRect,musicRect, creditsRect,goBackRect,mouseRect;
     //title
@@ -92,6 +94,12 @@ public class MainMenu implements Screen {
         goBack1 = new Texture("goBack1.png");
         goBack2 = new Texture("goBack2.png");
         currentGoBack = goBack1;
+
+        //sets the change character function
+        character = new Texture("character1.png");
+        character2 =  new Texture("character2.png");
+        currentCharacter = character;
+        changeCharacter = false;
 
         //the current music texture is on by default
         currentMusic = musicOnT;
@@ -254,6 +262,7 @@ public class MainMenu implements Screen {
             batch.draw(title, WORLD_WIDTH/(96/23f), WORLD_HEIGHT/(36/5f), WORLD_WIDTH/1.9f, WORLD_HEIGHT/1.3f);
             batch.draw(currentMusic, WORLD_WIDTH/(16/15f), WORLD_HEIGHT/(108/5f), WORLD_WIDTH/(96/5f), WORLD_HEIGHT/(54/5f));
             batch.draw(currentCredits,WORLD_WIDTH/(1920/697f), WORLD_HEIGHT-WORLD_HEIGHT-WORLD_HEIGHT/8, WORLD_WIDTH/(96/25f), WORLD_HEIGHT/(54/25));
+
             batch.end();
         }
 
@@ -270,6 +279,7 @@ public class MainMenu implements Screen {
           font2.draw(batch,"Fesliyan Studios",WORLD_WIDTH/384,WORLD_HEIGHT/(108/55f),sectionWidth, Align.left,false);
           font2.draw(batch,"find them here: https://www.fesliyanstudios.com/",WORLD_WIDTH/384,WORLD_HEIGHT/(54/25f),sectionWidth, Align.left,false);
           batch.draw(currentGoBack,WORLD_WIDTH/(1920/697f), WORLD_HEIGHT-WORLD_HEIGHT-WORLD_HEIGHT/8, WORLD_WIDTH/(96/25f), WORLD_HEIGHT/(54/25));
+            batch.draw(currentCharacter,WORLD_WIDTH/(1920/697f), WORLD_HEIGHT-WORLD_HEIGHT-WORLD_HEIGHT/8, WORLD_WIDTH/(96/25f), WORLD_HEIGHT/(54/25));
           batch.end();
         }
     }
