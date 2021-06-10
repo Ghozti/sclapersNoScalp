@@ -15,8 +15,6 @@ public class StockCrash extends PowerUp{
     @Override
     public void applyEffect(Scalper scalper, Player player) {
         //if (!effectApplied) {
-        System.out.println(scalper.getScore());
-        System.out.println((scalper.getScore() * 35)/100);
             playSound();
             scalper.setScore(scalper.getScore() - ((scalper.getScore() * 10)/100));
         //}
