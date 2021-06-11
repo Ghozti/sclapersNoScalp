@@ -254,7 +254,6 @@ public class MainMenu implements Screen {
     public void render(float delta) {
         startGame = false;
         showCredits = false;
-        changeCharacter = true;
         //once the game starts nothing will be rendered
         if (!startGame || showCredits) {
             Gdx.gl.glClearColor(.128f, .128f, .128f, .1f);

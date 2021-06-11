@@ -5,29 +5,27 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import ghozti.game.font.Font;
-import jdk.tools.jmod.Main;
 
 public class CharacterSelector {
 
-    String textureID;
-    int characterSelected;
-    Font font;
-    Font subFont;
-    String characterName;
+    private static String atlasName;
+    private Font font;
+    private Font subFont;
+    private String characterName;
 
     //textures
     Texture anakin, anakinSelected,currentAnakin,linus,linusSelected,currentLinus;
 
     public CharacterSelector(){
         //default textureID
-        textureID = "SpaceDude";
+        atlasName = "spacedude.atlas";
         //sets the font
         font = new Font(160);
         subFont = new Font(100);
         //sets textures
         anakin = new Texture("anakin.png");
         anakinSelected = new Texture("anakinSelected.png");
-        linus = new Texture("linus.png");
+        linus = new Texture("linusT.png");
         linusSelected = new Texture("linusSelected.png");
 
         currentAnakin = anakinSelected;
@@ -36,21 +34,8 @@ public class CharacterSelector {
         characterName = "chosen one";
     }
 
-    private void setTextureID(){
-        switch (characterSelected){
-            case 1:
-                textureID = "linusDropTips";
-                break;
-            case 2:
-                textureID = "bitwit";
-                break;
-            case 3:
-                textureID = "Steve";
-                break;
-            case 4:
-                textureID = "SpaceDude";
-                break;
-        }
+    public static String getAtlas(){
+        return atlasName;
     }
 
     public void update(){
@@ -66,25 +51,19 @@ public class CharacterSelector {
             currentAnakin = anakinSelected;
             currentLinus = linus;
             characterName = "chosen one";
-        }
-
-        if (Gdx.input.isKeyPressed(Input.Keys.ENTER)){
+        }else if (Gdx.input.isKeyPressed(Input.Keys.ENTER)){
             MainMenu.changeCharacter = false;
         }
-    }
-
-    public String getTextureId(){
-        return textureID;
     }
 
     public void draw(Batch batch){
         update();
         batch.begin();
-        font.draw(batch,"Character Selector",780, 1000,MainMenu.WORLD_WIDTH/3,false);
-        subFont.draw(batch,"Use arrow keys to cycle through characters and ENTER to select",520,900,MainMenu.WORLD_WIDTH/3,false);
-        subFont.draw(batch,"Current Character: ".concat(characterName),520,700,MainMenu.WORLD_WIDTH/3,false);
-        batch.draw(currentAnakin,100,100,500,500);
-        batch.draw(currentLinus,700,100,500,500);
+        font.draw(batch,"Character Selector",Screen.WORLD_WIDTH/(32/13f), Screen.WORLD_HEIGHT/(27/25f),MainMenu.WORLD_WIDTH/3,false);
+        subFont.draw(batch,"Use arrow keys to cycle through characters, press ENTER",Screen.WORLD_WIDTH/(48/13f),Screen.WORLD_HEIGHT/(6/5f),MainMenu.WORLD_WIDTH/3,false);
+        subFont.draw(batch,"Current Character: ".concat(characterName),Screen.WORLD_WIDTH/(48/13f),Screen.WORLD_HEIGHT/(54/35f),MainMenu.WORLD_WIDTH/3,false);
+        batch.draw(currentAnakin,Screen.WORLD_WIDTH/(95/5f),Screen.WORLD_HEIGHT/(54/5f),Screen.WORLD_WIDTH/(96/25f),Screen.WORLD_HEIGHT/(54/25f));
+        batch.draw(currentLinus,Screen.WORLD_WIDTH/(96/35f),Screen.WORLD_HEIGHT/(54/5f),Screen.WORLD_WIDTH/(96/25f),Screen.WORLD_HEIGHT/(54/25f));
         batch.end();
     }
 

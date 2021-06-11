@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import ghozti.game.screen.CharacterSelector;
 
 public class Player {
 
@@ -24,7 +25,7 @@ public class Player {
     //constructor
     public Player(float speed, float width, float height, float x, float y){
         //sets the texture atlas
-        atlas = new TextureAtlas("spacedude.atlas");
+        atlas = new TextureAtlas(CharacterSelector.getAtlas());
         //sets the starting texture.
         currentTexture = atlas.findRegion("neutral");
         //sets the speed
