@@ -87,4 +87,6 @@ public class CharacterSelector {
         batch.draw(currentLinus,700,100,500,500);
         batch.end();
     }
+
+    //TODO scale the fonts and textures, make this actually work, scale and work on Main menu
 }
