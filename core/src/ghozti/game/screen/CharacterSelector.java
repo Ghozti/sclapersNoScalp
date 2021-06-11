@@ -3,6 +3,7 @@ package ghozti.game.screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import ghozti.game.font.Font;
+import jdk.tools.jmod.Main;
 
 public class CharacterSelector {
 
@@ -18,11 +19,11 @@ public class CharacterSelector {
         //default textureID
         textureID = "SpaceDude";
         //sets the font
-        font = new Font(130);
+        font = new Font(160);
         //sets textures
         anakin = new Texture("anakin.png");
         anakinSelected = new Texture("anakinSelected.png");
-        linus = new Texture("linux.png");
+        linus = new Texture("linus.png");
         linusSelected = new Texture("linusSelected.png");
         currentSelected = anakinSelected;
     }
@@ -57,7 +58,11 @@ public class CharacterSelector {
     }
 
     public void draw(Batch batch){
-        font.draw(batch,"Character Selector",MainMenu.WORLD_WIDTH/2,40,MainMenu.WORLD_WIDTH/3,false);
-        batch.draw(currentSelected);
+        batch.begin();
+        font.draw(batch,"Character Selector",780, 1000,MainMenu.WORLD_WIDTH/3,false);
+        batch.draw(anakin,100,100,500,500);
+        batch.draw(linus,500,100,500,500);
+
+        batch.end();
     }
 }

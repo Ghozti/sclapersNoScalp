@@ -27,6 +27,7 @@ public class MainMenu implements Screen {
     Texture credits,creditsActive, currentCredits;
     Texture goBack1, goBack2, currentGoBack;
     Texture character,character2,currentCharacter;
+    CharacterSelector characterSelector;
     boolean changeCharacter;
     //bounding rect for the buttons
     com.badlogic.gdx.math.Rectangle startBtnRect,musicRect, creditsRect,goBackRect,mouseRect;
@@ -100,6 +101,7 @@ public class MainMenu implements Screen {
         character2 =  new Texture("character2.png");
         currentCharacter = character;
         changeCharacter = false;
+        characterSelector = new CharacterSelector();
 
         //the current music texture is on by default
         currentMusic = musicOnT;
@@ -250,6 +252,9 @@ public class MainMenu implements Screen {
 
     @Override
     public void render(float delta) {
+        startGame = false;
+        showCredits = false;
+        changeCharacter = true;
         //once the game starts nothing will be rendered
         if (!startGame || showCredits) {
             Gdx.gl.glClearColor(.128f, .128f, .128f, .1f);
@@ -280,6 +285,12 @@ public class MainMenu implements Screen {
           font2.draw(batch,"find them here: https://www.fesliyanstudios.com/",WORLD_WIDTH/384,WORLD_HEIGHT/(54/25f),sectionWidth, Align.left,false);
           batch.draw(currentGoBack,WORLD_WIDTH/(1920/697f), WORLD_HEIGHT-WORLD_HEIGHT-WORLD_HEIGHT/8, WORLD_WIDTH/(96/25f), WORLD_HEIGHT/(54/25));
           batch.end();
+        }
+
+        if (changeCharacter){
+            Gdx.gl.glClearColor(0.36f,0.54f,0.66f,1);
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            characterSelector.draw(batch);
         }
     }
 
