@@ -126,7 +126,7 @@ public class Screen implements com.badlogic.gdx.Screen {
 
     public void updatePowerUp(float delta){
         if(currentPowerUp.spawnNew){
-            switch ((int) ((Math.random() * (4 - 1) + 1))){
+            switch ((int) ((Math.random() * (5 - 1) + 1))){
                 case 1:
                     currentPowerUp = powerUps.get(0);
                     break;
