@@ -47,10 +47,12 @@ public class CharacterSelector {
             currentLinus = linusSelected;
             currentAnakin = anakin;
             characterName = "linus drop tips";
+            atlasName = "linus.atlas";
         }else if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
             currentAnakin = anakinSelected;
             currentLinus = linus;
             characterName = "chosen one";
+            atlasName = "spacedude.atlas";
         }else if (Gdx.input.isKeyPressed(Input.Keys.ENTER)){
             MainMenu.changeCharacter = false;
         }

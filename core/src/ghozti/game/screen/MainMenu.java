@@ -159,6 +159,7 @@ public class MainMenu implements Screen {
         //booleans for if something is on/off
         boolean check1 = false,check2 = false;
         boolean musicCheck1 = false,musicCheck2 = false;
+        boolean changeCharacterCheck1 = false,changeCharacterCheck2 = false;
 
         //the mouse must be positioned in a certain coordinate range for both check1 and check2 to be true
         if (Gdx.input.getX() <= WORLD_WIDTH/(1920/1163f) && Gdx.input.getX() >= WORLD_WIDTH/(960/377f)) {
@@ -243,6 +244,23 @@ public class MainMenu implements Screen {
         }else {
             currentGoBack = goBack1;
         }
+
+        if (Gdx.input.getX() >= WORLD_WIDTH/(96/41f) && Gdx.input.getX() <= WORLD_WIDTH/(1920/1093f)) {
+            changeCharacterCheck1 = true;
+        }
+        if (Gdx.input.getY() >= WORLD_HEIGHT/(18/17f) && Gdx.input.getY() <= WORLD_HEIGHT/(36/35f)){
+            changeCharacterCheck2 = true;
+        }
+
+        if (changeCharacterCheck1 && changeCharacterCheck2){
+            currentCharacter = character2;
+            if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
+                changeCharacter = true;
+                pauseMusic.play();
+            }
+        }else {
+            currentCharacter = character;
+        }
     }
 
     @Override
@@ -252,8 +270,6 @@ public class MainMenu implements Screen {
 
     @Override
     public void render(float delta) {
-        startGame = false;
-        showCredits = false;
         //once the game starts nothing will be rendered
         if (!startGame || showCredits) {
             Gdx.gl.glClearColor(.128f, .128f, .128f, .1f);
@@ -291,6 +307,7 @@ public class MainMenu implements Screen {
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
             characterSelector.draw(batch);
         }
+        //System.out.println(Gdx.input.getX() + "         " + Gdx.input.getY());
     }
 
     @Override
