@@ -17,6 +17,7 @@ public class MainMenu implements Screen {
 
     public static boolean startGame = false;
     public boolean showCredits = false;
+    public static boolean changeCharacter;
 
     //textures
     //buttons
@@ -28,7 +29,6 @@ public class MainMenu implements Screen {
     Texture goBack1, goBack2, currentGoBack;
     Texture character,character2,currentCharacter;
     CharacterSelector characterSelector;
-    boolean changeCharacter;
     //bounding rect for the buttons
     com.badlogic.gdx.math.Rectangle startBtnRect,musicRect, creditsRect,goBackRect,mouseRect;
     //title
