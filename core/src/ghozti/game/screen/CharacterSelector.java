@@ -55,6 +55,11 @@ public class CharacterSelector {
             atlasName = "spacedude.atlas";
         }else if (Gdx.input.isKeyPressed(Input.Keys.ENTER)){
             MainMenu.changeCharacter = false;
+            MainMenu.disableMainMenu = false;
+            MainMenu.disableMusic = false;
+            MainMenu.disableCredits = false;
+            MainMenu.disableGoBack = false;
+            MainMenu.disableChangeCharacter = false;
         }
     }
 

@@ -55,6 +55,8 @@ public class MainMenu implements Screen {
 
     BitmapFont font2;
 
+    public static boolean disableMainMenu,disableMusic, disableCredits, disableGoBack, disableChangeCharacter;
+
     public MainMenu() {
 
         //sets the background music
@@ -162,10 +164,10 @@ public class MainMenu implements Screen {
         boolean changeCharacterCheck1 = false,changeCharacterCheck2 = false;
 
         //the mouse must be positioned in a certain coordinate range for both check1 and check2 to be true
-        if (Gdx.input.getX() <= WORLD_WIDTH/(1920/1163f) && Gdx.input.getX() >= WORLD_WIDTH/(960/377f)) {
+        if (Gdx.input.getX() <= WORLD_WIDTH/(1920/1163f) && Gdx.input.getX() >= WORLD_WIDTH/(960/377f) && !disableMainMenu) {
             check1 = true;
         }
-        if (Gdx.input.getY() <= WORLD_HEIGHT/(4/3f) && Gdx.input.getY() >= WORLD_HEIGHT/(1080/721f)){
+        if (Gdx.input.getY() <= WORLD_HEIGHT/(4/3f) && Gdx.input.getY() >= WORLD_HEIGHT/(1080/721f) && !disableMainMenu){
             check2 = true;
         }
 
@@ -183,10 +185,10 @@ public class MainMenu implements Screen {
         }
 
         //same functionality as before except it is for the mute functionilty
-        if (Gdx.input.getX() >= WORLD_WIDTH/(16/15f) && Gdx.input.getX() <= WORLD_WIDTH/(48/47f)) {
+        if (Gdx.input.getX() >= WORLD_WIDTH/(16/15f) && Gdx.input.getX() <= WORLD_WIDTH/(48/47f) && !disableMusic) {
             musicCheck1 = true;
         }
-        if (Gdx.input.getY() >=  WORLD_HEIGHT/(216/187f) && Gdx.input.getY() <=  WORLD_HEIGHT/(540/503f)){
+        if (Gdx.input.getY() >=  WORLD_HEIGHT/(216/187f) && Gdx.input.getY() <=  WORLD_HEIGHT/(540/503f) && !disableMusic){
             musicCheck2 = true;
         }
 
@@ -208,10 +210,10 @@ public class MainMenu implements Screen {
         boolean creditsCheck1 = false,creditsCheck2 = false;
 
         //same functionality as before except it is for the credits screen
-        if (Gdx.input.getX() >= WORLD_WIDTH/(640/261f) && Gdx.input.getX() <= WORLD_WIDTH/(960/563f)) {
+        if (Gdx.input.getX() >= WORLD_WIDTH/(640/261f) && Gdx.input.getX() <= WORLD_WIDTH/(960/563f) && !disableCredits) {
             creditsCheck1 = true;
         }
-        if (Gdx.input.getY() >= WORLD_HEIGHT/(540/461f) && Gdx.input.getY() <= WORLD_HEIGHT/(72/65f)){
+        if (Gdx.input.getY() >= WORLD_HEIGHT/(540/461f) && Gdx.input.getY() <= WORLD_HEIGHT/(72/65f) && !disableCredits){
             creditsCheck2 = true;
         }
 
@@ -228,10 +230,10 @@ public class MainMenu implements Screen {
         boolean gobackCheck1 = false, gobackCheck2 = false;
 
         //same functionality as before except it is for the credits screen
-        if (Gdx.input.getX() >= WORLD_WIDTH/(640/261f) && Gdx.input.getX() <= WORLD_WIDTH/(960/563f)) {
+        if (Gdx.input.getX() >= WORLD_WIDTH/(640/261f) && Gdx.input.getX() <= WORLD_WIDTH/(960/563f) && !disableGoBack) {
             gobackCheck1 = true;
         }
-        if (Gdx.input.getY() >= WORLD_HEIGHT/(540/461f) && Gdx.input.getY() <= WORLD_HEIGHT/(72/65f)){
+        if (Gdx.input.getY() >= WORLD_HEIGHT/(540/461f) && Gdx.input.getY() <= WORLD_HEIGHT/(72/65f) && !disableGoBack){
             gobackCheck2 = true;
         }
 
@@ -239,23 +241,38 @@ public class MainMenu implements Screen {
             currentGoBack = goBack2;
             if(Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT)){
                 showCredits = false;
+
+                disableMainMenu = true;
+                disableMusic = true;
+                disableCredits = true;
+                disableGoBack = true;
+                changeCharacter = true;
+                disableChangeCharacter = true;
+
                 pauseMusic.play();
             }
         }else {
             currentGoBack = goBack1;
         }
 
-        if (Gdx.input.getX() >= WORLD_WIDTH/(96/41f) && Gdx.input.getX() <= WORLD_WIDTH/(1920/1093f)) {
+        if (Gdx.input.getX() >= WORLD_WIDTH/(96/41f) && Gdx.input.getX() <= WORLD_WIDTH/(1920/1093f) && !disableChangeCharacter) {
             changeCharacterCheck1 = true;
         }
-        if (Gdx.input.getY() >= WORLD_HEIGHT/(18/17f) && Gdx.input.getY() <= WORLD_HEIGHT/(36/35f)){
+        if (Gdx.input.getY() >= WORLD_HEIGHT/(18/17f) && Gdx.input.getY() <= WORLD_HEIGHT/(36/35f) && !disableChangeCharacter){
             changeCharacterCheck2 = true;
         }
 
         if (changeCharacterCheck1 && changeCharacterCheck2){
             currentCharacter = character2;
             if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
+
+                disableMainMenu = true;
+                disableMusic = true;
+                disableCredits = true;
+                disableGoBack = true;
                 changeCharacter = true;
+                disableChangeCharacter = true;
+
                 pauseMusic.play();
             }
         }else {
@@ -286,7 +303,7 @@ public class MainMenu implements Screen {
             batch.end();
         }
 
-        if (showCredits){
+        if (!startGame || showCredits){
           Gdx.gl.glClearColor(0, 0, 0, 0);
           Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
           update();
@@ -302,7 +319,7 @@ public class MainMenu implements Screen {
           batch.end();
         }
 
-        if (changeCharacter){
+        if (!startGame || changeCharacter){
             Gdx.gl.glClearColor(0.36f,0.54f,0.66f,1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
             characterSelector.draw(batch);
@@ -335,4 +352,6 @@ public class MainMenu implements Screen {
     public void dispose() {
 
     }
+
+    //TODO make an avaliable boolean toa void input to be processed in the wrong screen
 }
