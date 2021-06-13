@@ -221,6 +221,14 @@ public class MainMenu implements Screen {
             currentCredits = creditsActive;
             if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
                 showCredits = true;
+
+                disableMainMenu = true;
+                disableMusic = true;
+                disableCredits = true;
+                disableGoBack = false;
+                changeCharacter = true;
+                disableChangeCharacter = true;
+
                 pauseMusic.play();
             }
         }else {
@@ -242,12 +250,12 @@ public class MainMenu implements Screen {
             if(Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT)){
                 showCredits = false;
 
-                disableMainMenu = true;
-                disableMusic = true;
-                disableCredits = true;
+                disableMainMenu = false;
+                disableMusic = false;
+                disableCredits = false;
                 disableGoBack = true;
-                changeCharacter = true;
-                disableChangeCharacter = true;
+                changeCharacter = false;
+                disableChangeCharacter = false;
 
                 pauseMusic.play();
             }
@@ -288,7 +296,7 @@ public class MainMenu implements Screen {
     @Override
     public void render(float delta) {
         //once the game starts nothing will be rendered
-        if (!startGame || showCredits) {
+        if (!startGame) {
             Gdx.gl.glClearColor(.128f, .128f, .128f, .1f);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
             update();
@@ -303,7 +311,7 @@ public class MainMenu implements Screen {
             batch.end();
         }
 
-        if (!startGame || showCredits){
+        if (showCredits){
           Gdx.gl.glClearColor(0, 0, 0, 0);
           Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
           update();
@@ -319,7 +327,7 @@ public class MainMenu implements Screen {
           batch.end();
         }
 
-        if (!startGame || changeCharacter){
+        if (changeCharacter){
             Gdx.gl.glClearColor(0.36f,0.54f,0.66f,1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
             characterSelector.draw(batch);
