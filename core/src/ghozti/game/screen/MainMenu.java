@@ -226,7 +226,6 @@ public class MainMenu implements Screen {
                 disableMusic = true;
                 disableCredits = true;
                 disableGoBack = false;
-                changeCharacter = true;
                 disableChangeCharacter = true;
 
                 pauseMusic.play();
@@ -254,7 +253,6 @@ public class MainMenu implements Screen {
                 disableMusic = false;
                 disableCredits = false;
                 disableGoBack = true;
-                changeCharacter = false;
                 disableChangeCharacter = false;
 
                 pauseMusic.play();
@@ -273,12 +271,12 @@ public class MainMenu implements Screen {
         if (changeCharacterCheck1 && changeCharacterCheck2){
             currentCharacter = character2;
             if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
+                changeCharacter = true;
 
                 disableMainMenu = true;
                 disableMusic = true;
                 disableCredits = true;
                 disableGoBack = true;
-                changeCharacter = true;
                 disableChangeCharacter = true;
 
                 pauseMusic.play();
@@ -296,6 +294,12 @@ public class MainMenu implements Screen {
     @Override
     public void render(float delta) {
         //once the game starts nothing will be rendered
+
+        if(startGame){
+            Gdx.gl.glClearColor(.128f, .128f, .128f, .1f);
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        }
+
         if (!startGame) {
             Gdx.gl.glClearColor(.128f, .128f, .128f, .1f);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -311,7 +315,7 @@ public class MainMenu implements Screen {
             batch.end();
         }
 
-        if (showCredits){
+        if (!startGame && showCredits && !changeCharacter){
           Gdx.gl.glClearColor(0, 0, 0, 0);
           Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
           update();
@@ -327,7 +331,7 @@ public class MainMenu implements Screen {
           batch.end();
         }
 
-        if (changeCharacter){
+        if (!startGame && changeCharacter && !showCredits){
             Gdx.gl.glClearColor(0.36f,0.54f,0.66f,1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
             characterSelector.draw(batch);
@@ -361,5 +365,5 @@ public class MainMenu implements Screen {
 
     }
 
-    //TODO make an avaliable boolean toa void input to be processed in the wrong screen
+    //TODO debug why entering in credits opens up changecharacter
 }
