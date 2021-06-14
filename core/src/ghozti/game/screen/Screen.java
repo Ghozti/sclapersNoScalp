@@ -64,13 +64,14 @@ public class Screen implements com.badlogic.gdx.Screen {
 
         //sets texture atlas and batch
         atlas = new TextureAtlas("general.atlas");
-        gpuAtlas = new TextureAtlas("gpu.atlas");
         batch = new SpriteBatch();
 
         //initializes the game objects
-        for (int i = 0; i < 3; i++) {
-            graphicsCards.add(new GraphicsCard(gpuAtlas,100,100,WORLD_WIDTH,WORLD_HEIGHT));
-        }
+
+        graphicsCards.add(new GraphicsCard(WORLD_WIDTH,WORLD_HEIGHT));
+        graphicsCards.add(new GraphicsCard(WORLD_WIDTH,WORLD_HEIGHT));
+        graphicsCards.add(new GraphicsCard(WORLD_WIDTH,WORLD_HEIGHT));
+
         powerUps.add(new SpeedBoost(100,100));
         powerUps.add(new StockCrash(100,100));
         powerUps.add(new ScalperSlower(100,100));
@@ -117,7 +118,7 @@ public class Screen implements com.badlogic.gdx.Screen {
 
         player.move(delta);
         updatePowerUp(delta);
-        createCards();
+        updateCards();
     }
 
     public void renderPowerUp(Batch batch){
@@ -148,34 +149,20 @@ public class Screen implements com.badlogic.gdx.Screen {
     }
 
     public void renderCards(Batch batch){
-        if(graphicsCards.get(0) != null) graphicsCards.get(0).draw(batch);
-        if(graphicsCards.get(1) != null) graphicsCards.get(1).draw(batch);
-        if(graphicsCards.get(2) != null) graphicsCards.get(2).draw(batch);
+
     }
 
-    float currentInd;
+    public void updateCards(){
 
-    public void createCards(){
-        GraphicsCard.detectCollision(player,scalper,graphicsCards);
 
-        if(graphicsCards.get(0) == null){
-            graphicsCards.set(0, new GraphicsCard(gpuAtlas,100,100,WORLD_WIDTH,WORLD_HEIGHT));
-            currentInd = (float) ((Math.random() * (2 - 0) + 0));
-        }
-        if(graphicsCards.get(1) == null){
-            graphicsCards.set(1, new GraphicsCard(gpuAtlas,100,100,WORLD_WIDTH,WORLD_HEIGHT));
-            currentInd = (float) ((Math.random() * (2 - 0) + 0));
-        }
-        if(graphicsCards.get(2) == null){
-            graphicsCards.set(2, new GraphicsCard(gpuAtlas,100,100,WORLD_WIDTH,WORLD_HEIGHT));
-            currentInd = (float) ((Math.random() * (2 - 0) + 0));
-        }
     }
 
     @Override
     public void show() {
 
     }
+
+    float currentInd;
 
     @Override
     public void render(float delta) {
@@ -230,5 +217,5 @@ public class Screen implements com.badlogic.gdx.Screen {
     public void dispose() {
     }
 
-    //TODO display to the user what card they got and what card they got
+    //TODO make the cards work like powerups
 }

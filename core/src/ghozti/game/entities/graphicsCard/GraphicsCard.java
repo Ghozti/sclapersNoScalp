@@ -1,3 +1,4 @@
+
 package ghozti.game.entities.graphicsCard;
 
 import com.badlogic.gdx.Gdx;
@@ -30,9 +31,9 @@ public class GraphicsCard {
     //bools
     boolean collided;
 
-    public GraphicsCard(TextureAtlas textureAtlas, float width, float height, float worldW, float worldH){
+    public GraphicsCard(float worldW, float worldH){
         //sets the texture atlas
-        this.atlas = textureAtlas;
+        this.atlas = new TextureAtlas("gpu.atlas");
         //sets the positions
         float[] positions = setPosition(worldW,worldH);
         //adds all possible textures into the array
@@ -86,6 +87,42 @@ public class GraphicsCard {
     public float getX() {return boundingRect.x;}
     public float getY(){return boundingRect.y;}
 
+    public void reset(float wW, float wH){
+
+        //resets attributes
+
+        float[] positions = setPosition(wW,wH);
+
+        currentRegion = textureRegions[(int) ((Math.random() * ((textureRegions.length)) + 0))];
+
+        if (currentRegion == textureRegions[5]) {
+            textureW = 100;
+            textureH = 50;
+        }
+
+        boundingRect.setPosition(positions[0]+10,positions[1]+30);
+
+        if (textureRegions[0].equals(currentRegion)) {
+            card = "3070 FE";
+        }else if (textureRegions[1].equals(currentRegion)) {
+            card = "3080 Suprim";
+        }else if (textureRegions[2].equals(currentRegion)) {
+            card = "3080 FE";
+        }else if (textureRegions[3].equals(currentRegion)) {
+            card = "3090 FE";
+        }else if (textureRegions[4].equals(currentRegion)) {
+            card = "6700xt";
+        }else if (textureRegions[5].equals(currentRegion)) {
+            card = "6700xt red devil";
+        }else if (textureRegions[6].equals(currentRegion)) {
+            card = "6800";
+        }else if (textureRegions[7].equals(currentRegion)) {
+            card = "6800xt midnight";
+        }else if (textureRegions[8].equals(currentRegion)) {
+            card = "6900xt";
+        }
+    }
+
     //collision detection for scalper and player
     public boolean collides(Player player, Scalper scalper){
         //sets scores for both scalper and player when collides
@@ -93,26 +130,11 @@ public class GraphicsCard {
             player.setScore(player.getScore()+player.getScoringNumber());
             collided = true;
         }
-        else if (scalper.getBoundingRect().overlaps(boundingRect)) scalper.setScore(scalper.getScore()+scalper.getScoringNumber());
+        else if (scalper.getBoundingRect().overlaps(boundingRect)) {
+            scalper.setScore(scalper.getScore() + scalper.getScoringNumber());
+            collided = true;
+        }
         return player.getBoundingRect().overlaps(boundingRect) || scalper.getBoundingRect().overlaps(boundingRect);
-    }
-
-    public static void detectCollision(Player player, Scalper scalper, ArrayList<GraphicsCard> graphicsCards){
-        if(graphicsCards.get(0).collides(player,scalper)) {
-            Sound sound = Gdx.audio.newSound(Gdx.files.internal("unlock.wav"));
-            sound.play(1.0f);
-            graphicsCards.set(0,null);
-        }
-        if(graphicsCards.get(1).collides(player,scalper)) {
-            Sound sound = Gdx.audio.newSound(Gdx.files.internal("unlock.wav"));
-            sound.play(1.0f);
-            graphicsCards.set(1,null);
-        }
-        if(graphicsCards.get(2).collides(player,scalper)) {
-            Sound sound = Gdx.audio.newSound(Gdx.files.internal("unlock.wav"));
-            sound.play(1.0f);
-            graphicsCards.set(2,null);
-        }
     }
 
     //creates an array with 2 randomly created floats for the x and y pos
