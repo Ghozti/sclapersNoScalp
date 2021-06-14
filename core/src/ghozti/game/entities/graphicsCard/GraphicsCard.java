@@ -132,9 +132,13 @@ public class GraphicsCard {
         //sets scores for both scalper and player when collides
         if(player.getBoundingRect().overlaps(boundingRect)) {
             player.setScore(player.getScore()+player.getScoringNumber());
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("unlock.wav"));
+            sound.play(1.0f);
         }
         else if (scalper.getBoundingRect().overlaps(boundingRect)) {
             scalper.setScore(scalper.getScore() + scalper.getScoringNumber());
+            Sound sound = Gdx.audio.newSound(Gdx.files.internal("unlock.wav"));
+            sound.play(1.0f);
         }
         return player.getBoundingRect().overlaps(boundingRect) || scalper.getBoundingRect().overlaps(boundingRect);
     }
