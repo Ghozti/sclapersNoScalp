@@ -149,12 +149,21 @@ public class Screen implements com.badlogic.gdx.Screen {
     }
 
     public void renderCards(Batch batch){
-
+        graphicsCards.get(0).draw(batch);
+        graphicsCards.get(1).draw(batch);
+        graphicsCards.get(2).draw(batch);
     }
 
     public void updateCards(){
-
-
+        if (graphicsCards.get(0).collides(player,scalper)){
+            graphicsCards.get(0).reset(WORLD_WIDTH,WORLD_HEIGHT);
+        }
+        if (graphicsCards.get(1).collides(player,scalper)){
+            graphicsCards.get(1).reset(WORLD_WIDTH,WORLD_HEIGHT);
+        }
+        if (graphicsCards.get(2).collides(player,scalper)){
+            graphicsCards.get(2).reset(WORLD_WIDTH,WORLD_HEIGHT);
+        }
     }
 
     @Override

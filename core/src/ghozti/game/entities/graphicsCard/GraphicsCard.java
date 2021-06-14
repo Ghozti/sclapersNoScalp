@@ -28,8 +28,6 @@ public class GraphicsCard {
     int textureW = 100,textureH = 100;
     //dialogue
     String card;
-    //bools
-    boolean collided;
 
     public GraphicsCard(float worldW, float worldH){
         //sets the texture atlas
@@ -37,7 +35,7 @@ public class GraphicsCard {
         //sets the positions
         float[] positions = setPosition(worldW,worldH);
         //adds all possible textures into the array
-        textureRegions = new TextureRegion[9];
+        textureRegions = new TextureRegion[10];
 
         textureRegions[0] = atlas.findRegion("3070");
         textureRegions[1] = atlas.findRegion("suprim");
@@ -48,11 +46,12 @@ public class GraphicsCard {
         textureRegions[6] = atlas.findRegion("6800");
         textureRegions[7] = atlas.findRegion("midnight");
         textureRegions[8] = atlas.findRegion("6900xt");
+        textureRegions[9] = atlas.findRegion("6800xt");
 
         //sets the actual current texture randomly.
         currentRegion = textureRegions[(int) ((Math.random() * ((textureRegions.length)) + 0))];
 
-        if (currentRegion == textureRegions[5]) {
+        if (currentRegion == atlas.findRegion("redDevil")) {
             textureW = 100;
             textureH = 50;
         }
@@ -78,6 +77,8 @@ public class GraphicsCard {
             card = "6800xt midnight";
         }else if (textureRegions[8].equals(currentRegion)) {
             card = "6900xt";
+        }else if (textureRegions[9].equals(currentRegion)) {
+            card = "6800xt";
         }
     }
 
@@ -95,9 +96,12 @@ public class GraphicsCard {
 
         currentRegion = textureRegions[(int) ((Math.random() * ((textureRegions.length)) + 0))];
 
-        if (currentRegion == textureRegions[5]) {
+        if (currentRegion == atlas.findRegion("redDevil")) {
             textureW = 100;
             textureH = 50;
+        }else {
+            textureW = 100;
+            textureH = 100;
         }
 
         boundingRect.setPosition(positions[0]+10,positions[1]+30);
@@ -128,11 +132,9 @@ public class GraphicsCard {
         //sets scores for both scalper and player when collides
         if(player.getBoundingRect().overlaps(boundingRect)) {
             player.setScore(player.getScore()+player.getScoringNumber());
-            collided = true;
         }
         else if (scalper.getBoundingRect().overlaps(boundingRect)) {
             scalper.setScore(scalper.getScore() + scalper.getScoringNumber());
-            collided = true;
         }
         return player.getBoundingRect().overlaps(boundingRect) || scalper.getBoundingRect().overlaps(boundingRect);
     }
@@ -143,8 +145,6 @@ public class GraphicsCard {
         float y = (float) ((Math.random() * ((worldHeight - 60) - 60)) + 60);
         return new float[]{x,y};
     }
-
-    Texture scalp = new Texture("22.jpg");
 
     public void draw(Batch batch){
         Screen.font.draw(batch,card,boundingRect.x, currentRegion == textureRegions[5] ? boundingRect.y-30 : boundingRect.y-15, Screen.WORLD_WIDTH/3,false);
