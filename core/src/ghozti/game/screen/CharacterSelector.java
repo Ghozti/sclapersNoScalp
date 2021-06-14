@@ -73,6 +73,4 @@ public class CharacterSelector {
         batch.draw(currentLinus,Screen.WORLD_WIDTH/(96/35f),Screen.WORLD_HEIGHT/(54/5f),Screen.WORLD_WIDTH/(96/25f),Screen.WORLD_HEIGHT/(54/25f));
         batch.end();
     }
-
-    //TODO scale the fonts and textures, make this actually work, scale and work on Main menu
 }

@@ -364,6 +364,4 @@ public class MainMenu implements Screen {
     public void dispose() {
 
     }
-
-    //TODO debug why entering in credits opens up changecharacter
 }
